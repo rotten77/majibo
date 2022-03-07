@@ -10,3 +10,7 @@ Majibo is a simple static site generator. It uses Markdown for writing content i
 	{{include my_file}}
 
 Includes `my_file.md` from `content/include` folder.
+
+### Image
+
+	{{image file.png "Title of an image"}}

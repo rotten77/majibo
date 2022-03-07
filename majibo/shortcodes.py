@@ -18,7 +18,14 @@ class Shortcodes:
 	def get_shortcodes(self, text):
 		shortcodes = []
 		for shortcode in re.findall(r'.*({{([a-z_-]+)\s+([^}]+)}}).*', text):
-			shortcodes.append({'shortcode': shortcode[0],'tag': shortcode[1], 'arguments': shortcode[2].split(' ')})
+			arguments = []
+			for argument in re.findall(r'\"[^\"]+\"|[^\s]+', shortcode[2].strip()):
+				arguments.append(argument.strip().strip('"').strip('\''))
+				
+			shortcodes.append({
+				'shortcode': shortcode[0],
+				'tag': shortcode[1],
+				'arguments': arguments})
 		return shortcodes
 
 	def convert(self, text):
