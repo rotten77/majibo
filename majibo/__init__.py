@@ -7,6 +7,7 @@ import jinja2
 import markdown
 from icecream import ic
 from .bootstrap import BootstrapExtension
+from .shortcodes import Shortcodes
 
 md = markdown.Markdown(extensions=['meta', BootstrapExtension()])
 
@@ -86,6 +87,9 @@ class Majibo():
 			except Exception as ex:
 				print(Fore.RED + f'read "{file}.md": {type(ex).__name__}' + Style.RESET_ALL)
 			
+			# shortcodes
+			markdown_text = Shortcodes().convert(markdown_text, self.project_content_path)
+
 			# set data for template
 			data = {
 				'content': md.convert(markdown_text)
