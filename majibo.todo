@@ -1,9 +1,5 @@
-App:
-	
+Image:
+	☐ Config - max size
 
-Projects:
-	☐ Define folder/file structure
-
-Example project:
-	☐ Make example project content
-
+Gallery:
+	☐ Config - thumb size and number of columns

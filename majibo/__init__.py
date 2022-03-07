@@ -88,7 +88,7 @@ class Majibo():
 				print(Fore.RED + f'read "{file}.md": {type(ex).__name__}' + Style.RESET_ALL)
 			
 			# shortcodes
-			markdown_text = Shortcodes().convert(markdown_text, self.project_content_path)
+			markdown_text = Shortcodes(self.root_folder, self.project).convert(markdown_text)
 
 			# set data for template
 			data = {
