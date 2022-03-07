@@ -8,6 +8,7 @@ import markdown
 from icecream import ic
 from .bootstrap import BootstrapExtension
 from .shortcodes import Shortcodes
+import importlib.util
 
 md = markdown.Markdown(extensions=['meta', BootstrapExtension()])
 
@@ -27,7 +28,17 @@ class Majibo():
 			print(Fore.RED)
 			raise NotADirectoryError(f'Project folder "{project}" not found' + Style.RESET_ALL)
 		
+		# project config
+		try:
+			spec = importlib.util.spec_from_file_location("config", os.path.join(project_path, 'config.py'))
+			config = importlib.util.module_from_spec(spec)
+			spec.loader.exec_module(config)
+			self.config = config
+		except Exception as ex:
+			print(Fore.RED + f'error "{project}/config.py": {type(ex).__name__}' + Style.RESET_ALL)
+		
 		self.build_project()
+
 
 	def get_project(self):
 		return self.project
@@ -88,7 +99,7 @@ class Majibo():
 				print(Fore.RED + f'read "{file}.md": {type(ex).__name__}' + Style.RESET_ALL)
 			
 			# shortcodes
-			markdown_text = Shortcodes(self.root_folder, self.project).convert(markdown_text)
+			markdown_text = Shortcodes(self.root_folder, self.project, self.config.IMAGE_MAX_WIDTH).convert(markdown_text)
 
 			# set data for template
 			data = {

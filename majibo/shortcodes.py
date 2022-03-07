@@ -7,13 +7,14 @@ from .image import MajiboImage
 
 class Shortcodes:
 
-	def __init__(self, root_folder, project):
+	def __init__(self, root_folder, project, config):
 		project_path = os.path.join(root_folder, 'projects', project)
 
 		self.root_folder = root_folder
 		self.project = project
 		self.project_path = project_path
 		self.project_content_path = os.path.join(project_path, 'content')
+		self.config = config
 
 	def get_shortcodes(self, text):
 		shortcodes = []
@@ -59,7 +60,7 @@ class Shortcodes:
 				except:
 					pass
 
-				resized = mimg.resize(shortcode['arguments'][0].strip())
+				resized = mimg.resize(shortcode['arguments'][0].strip(), self.config)
 
 				shortcode_html = template.render({
 					'file': resized,
