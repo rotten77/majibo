@@ -1,0 +1,3 @@
+LINK_BASE = './'
+LINK_BASE_IMG = f'{LINK_BASE}img/'
+LINK_BASE_ASSETS = f'{LINK_BASE}assets/'
