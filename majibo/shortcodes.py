@@ -28,6 +28,32 @@ class Shortcodes:
 				'tag': shortcode[1],
 				'arguments': arguments})
 		return shortcodes
+	
+	def get_embed_arguments(self, shortcode):
+
+		ratio = '16x9'
+		url = None
+
+		for argument in shortcode['arguments']:
+			argument = argument.strip()
+			if re.match(r'[0-9]{1,2}x[0-9]{1,2}', argument):
+				ratio = argument
+			if shortcode['tag'] == 'iframe' and (argument[0:4] == 'http' or argument[0:4] == '//'):
+				url = argument
+			if shortcode['tag'] == 'youtube':
+				url = f'https://www.youtube.com/embed/{argument}'
+				if len(argument)>11:
+					url = f'https://www.youtube.com/embed/videoseries?list={argument}'
+		
+		if url is None:
+			print(Fore.RED + f'No "url" in shortcode: "{shortcode["shortcode"]}"' + Style.RESET_ALL)
+		
+		return {
+			'tag': shortcode['tag'],
+			'ratio': ratio,
+			'url': url,
+		}
+
 
 	def convert(self, text):
 
@@ -82,6 +108,12 @@ class Shortcodes:
 					'gallery': gallery,
 					'config': self.config,
 					})
+				text = text.replace(shortcode['shortcode'], shortcode_html)
+			
+			# embed
+			if shortcode['tag'] == 'youtube' or shortcode['tag'] == 'iframe':
+				template = templateEnv.get_template('embed.html')
+				shortcode_html = template.render( self.get_embed_arguments(shortcode) )
 				text = text.replace(shortcode['shortcode'], shortcode_html)
 				
 
