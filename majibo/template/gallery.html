@@ -1,0 +1,16 @@
+<div class="row justify-content-md-center mb-4">
+	{%  for item in gallery %}
+
+		{% set file = item['file'] %}
+		<div class="col-md-auto">
+			{% if file['src'] != file['thumbnail_src'] %}<a href="{{file['src']}}">{% endif %}
+				<img src="{{file['thumbnail_src']}}" width="{{file['thumbnail_width']}}"{% if title is not none %} alt="{{title}}"{% endif %} height="{{file['thumbnail_height']}}" />
+			{% if file['src'] != file['thumbnail_src'] %}</a>{% endif %}
+		</div>
+
+		{% if loop.index is divisibleby(config.IMAGE_GALLERY_MAX_COLUMNS) %}
+			{% set i = 0 %}
+			</div><div class="row justify-content-md-center mb-4">
+		{% endif %}
+	{% endfor %}
+</div>

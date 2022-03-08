@@ -2,6 +2,7 @@ import os
 import re
 from icecream import ic
 from PIL import Image
+from .config_global import *
 
 class MajiboImage():
 
@@ -22,17 +23,16 @@ class MajiboImage():
 			image = Image.open(image_file_path)
 
 			image_meta_data = {
-				'src': image_file_name,
+				'src': LINK_BASE_IMG + image_file_name,
 				'width': image.width,
 				'height': image.height,
-				'thumbnail_src': image_file_name,
+				'thumbnail_src': LINK_BASE_IMG + image_file_name,
 				'thumbnail_width': image.width,
 				'thumbnail_height': image.height,
 			}
 
 			if image.width > max_size or crop == True:
-				image_thumbnail_file_name = re.sub('(.+)(\.[a-z]{3,4})', r'\1_thumb\2', image_file_name)
-
+				
 				if crop:
 					width, height = image.size   # Get dimensions
 
@@ -43,11 +43,14 @@ class MajiboImage():
 
 					# Crop the center of the image
 					image = image.crop((left, top, right, bottom))
-					
+				
 				image.thumbnail((max_size, max_size))
+
+				image_thumbnail_file_name = re.sub('(.+)(\.[a-z]{3,4})', rf'\1_thumb_{image.width}x{image.height}\2', image_file_name)
+					
 				image.save(os.path.join(self.project_dist_img_path,  image_thumbnail_file_name))
 
-				image_meta_data['thumbnail_src'] = image_thumbnail_file_name
+				image_meta_data['thumbnail_src'] = LINK_BASE_IMG + image_thumbnail_file_name
 				image_meta_data['thumbnail_width'] = image.width
 				image_meta_data['thumbnail_height'] = image.height
 		

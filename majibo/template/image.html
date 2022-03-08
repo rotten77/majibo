@@ -1,7 +1,7 @@
 <div class="row justify-content-md-center mb-4">
 	<div class="col-md-auto">
-		{% if file['src'] != file['thumbnail_src'] %}<a href="./img/{{file['src']}}">{% endif %}
-			<img src="./img/{{file['thumbnail_src']}}" width="{{file['thumbnail_width']}}"{% if title is not none %} alt="{{title}}"{% endif %} height="{{file['thumbnail_height']}}" />
+		{% if file['src'] != file['thumbnail_src'] %}<a href="{{file['src']}}">{% endif %}
+			<img src="{{file['thumbnail_src']}}" width="{{file['thumbnail_width']}}"{% if title is not none %} alt="{{title}}"{% endif %} height="{{file['thumbnail_height']}}" />
 		{% if file['src'] != file['thumbnail_src'] %}</a>{% endif %}
 	</div>
 </div>

@@ -35,6 +35,9 @@ class Shortcodes:
 		templateLoader = jinja2.FileSystemLoader(searchpath=os.path.join(self.root_folder, 'majibo', 'template'))
 		templateEnv = jinja2.Environment(loader=templateLoader)
 
+		# setup MajiboImage
+		mimg = MajiboImage(self.root_folder, self.project)
+
 		for shortcode in self.get_shortcodes(text):
 
 			# include MD file
@@ -52,7 +55,6 @@ class Shortcodes:
 			
 			# image
 			if shortcode['tag'] == 'image':
-				mimg = MajiboImage(self.root_folder, self.project)
 				template = templateEnv.get_template('image.html')
 				image_title = None
 				try:
@@ -60,11 +62,25 @@ class Shortcodes:
 				except:
 					pass
 
-				resized = mimg.resize(shortcode['arguments'][0].strip(), self.config)
+				resized = mimg.resize(shortcode['arguments'][0].strip(), self.config.IMAGE_MAX_WIDTH, False)
 
 				shortcode_html = template.render({
 					'file': resized,
-					'title': image_title
+					'title': image_title,
+					'config': self.config
+					})
+				text = text.replace(shortcode['shortcode'], shortcode_html)
+			
+			# gallery
+			if shortcode['tag'] == 'gallery':
+				template = templateEnv.get_template('gallery.html')
+				gallery = []
+				for image_file_name in shortcode['arguments']:
+					gallery.append({'file': mimg.resize(image_file_name, self.config.IMAGE_GALLERY_MAX_WIDTH, True) })
+				
+				shortcode_html = template.render({
+					'gallery': gallery,
+					'config': self.config,
 					})
 				text = text.replace(shortcode['shortcode'], shortcode_html)
 				

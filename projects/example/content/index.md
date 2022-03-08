@@ -12,7 +12,7 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 
 ### Image
 
-{{image image-02.jpg "Title of an image"}}
+{{image image-01.jpg "Title of an image"}}
 
 ### Gallery
 
