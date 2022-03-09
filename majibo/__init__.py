@@ -84,6 +84,7 @@ class Majibo():
 			for file in os.listdir(os.path.join(self.project_path, folder)):
 				if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
 					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
+		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js'))
 		
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)
