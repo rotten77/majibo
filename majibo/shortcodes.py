@@ -115,6 +115,11 @@ class Shortcodes:
 				template = templateEnv.get_template('embed.html')
 				shortcode_html = template.render( self.get_embed_arguments(shortcode) )
 				text = text.replace(shortcode['shortcode'], shortcode_html)
+			
+			if shortcode['tag'] == 'gist':
+				template = templateEnv.get_template('gist.html')
+				shortcode_html = template.render( {'src': shortcode['arguments'][0].strip()} )
+				text = text.replace(shortcode['shortcode'], shortcode_html)
 				
 
 				
