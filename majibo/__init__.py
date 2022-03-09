@@ -9,6 +9,8 @@ from icecream import ic
 from .bootstrap import BootstrapExtension
 from .shortcodes import Shortcodes
 import importlib.util
+from .config_global import *
+from datetime import datetime
 
 md = markdown.Markdown(extensions=['meta', BootstrapExtension()])
 
@@ -49,6 +51,26 @@ class Majibo():
 			if re.match('.+\.md', file):
 				project_content.append(file.replace('.md', ''))
 		return project_content
+	
+	def get_site_navigation(self, current_file):
+		navigation = None
+		try:
+			navigation = []
+			for item in self.config.SITE_NAVIGATION:
+				href = LINK_BASE + (f'{item["id"]}.html' if item["id"] != 'index' else '')
+				try:
+					href = item['href']
+				except:
+					pass
+				navigation.append({
+					'id': item['id'],
+					'href': href,
+					'title': item['title'],
+					'is_active': True if current_file == item["id"] else False
+				})
+		except Exception as ex:
+			print(Fore.RED + f'navigation": {type(ex).__name__}' + Style.RESET_ALL)
+		return navigation
 	
 	def build_project(self):
 		# create dist folder
@@ -102,10 +124,70 @@ class Majibo():
 			# shortcodes
 			markdown_text = Shortcodes(self.root_folder, self.project, self.config).convert(markdown_text)
 
+			# navigation
+			navigation = self.get_site_navigation(file)	
+
 			# set data for template
 			data = {
-				'content': md.convert(markdown_text)
-			}
+				'site_language': self.config.SITE_LANG,
+				'site_name': self.config.SITE_NAME,
+				'site_url': self.config.SITE_URL,
+				'site_author': self.config.SITE_AUTHOR,
+				'page_url': self.config.SITE_URL + (f'{file}.html' if file !='index' else ''),
+				'is_index': (True if file == 'index' else False),
+				'page_type': 'website',
+				'link_base': LINK_BASE,
+				'stylesheet': LINK_BASE_ASSETS + ('style.min.css' if self.config.USE_COMPRESSED_CSS else 'style.css'),
+				'title': None,
+				'navigation': navigation,
+				'meta': {
+					'title': None,
+					'image': None,
+					'description': None,
+				},
+            	'content': md.convert(markdown_text)
+        	}
+
+			 # set metadata
+			try:
+				data['page_type'] = md.Meta['type'][0]
+			except:
+				pass
+
+			try:
+				data['site_language'] = md.Meta['lang'][0]
+			except:
+				pass
+
+			try:
+				data['title'] = (self.config.SITE_NAME if file == 'index' else md.Meta['title'][0])
+				data['meta']['title'] = (self.config.SITE_NAME if file == 'index' else md.Meta['title'][0] + ' &#124; ' + self.config.SITE_NAME)
+			except:
+				data['meta']['title'] = self.config.SITE_NAME
+				print('Missing meta "Title" tag')
+
+			try:
+				data['meta']['image'] = LINK_BASE_IMG + md.Meta['image'][0]
+			except:
+				data['meta']['image'] = LINK_BASE_IMG + self.config.PAGE_DEFAULT_IMAGE
+				print('Missing meta "Image" tag')
+
+			try:
+				data['meta']['description'] = md.Meta['description'][0]
+			except:
+				data['meta']['description'] = self.config.PAGE_DEFAULT_DESCRIPTION
+				print('Missing meta "Description" tag')
+
+			try:
+				data['meta']['author'] = md.Meta['author'][0]
+			except:
+				print('Missing meta "Author" tag')
+
+			try:
+				data['meta']['date'] = datetime.strptime(md.Meta['date'][0], self.config.DATETIME_FORMAT)
+			except:
+				data['meta']['date'] = datetime.today().strftime(self.config.DATETIME_FORMAT)
+				print('Missing meta "Date" tag')
 
 			# render
 			html = template.render(data)
