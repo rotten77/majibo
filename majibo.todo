@@ -12,7 +12,7 @@ Bootstrap:
 	✔ Generate CSS to project /assets/ folder @done(2022-03-09 18:50)
 	☐ Compressed/uncompressed stylesheet as builder argument
 Builder:
-	☐ Remove "thumb" from thumbnail file name
+	✔ Remove "thumb" from thumbnail file name @done(2022-03-09 18:52)
 Project:
 	☐ Image title list
 		image-01.png: Title of an image-01.png

@@ -46,7 +46,7 @@ class MajiboImage():
 				
 				image.thumbnail((max_size, max_size))
 
-				image_thumbnail_file_name = re.sub('(.+)(\.[a-z]{3,4})', rf'\1_thumb_{image.width}x{image.height}\2', image_file_name)
+				image_thumbnail_file_name = re.sub('(.+)(\.[a-z]{3,4})', rf'\1_{image.width}x{image.height}\2', image_file_name)
 					
 				image.save(os.path.join(self.project_dist_img_path,  image_thumbnail_file_name))
 
