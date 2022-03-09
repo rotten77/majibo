@@ -3,3 +3,5 @@ dist/*
 # !dist/example
 projects/*
 !projects/example
+*.map
+/bootstrap/scss/*.css

@@ -1,5 +1,21 @@
-Image:
-	☐ Config - max size
-
-Gallery:
-	☐ Config - thumb size and number of columns
+Meta:
+	☐ Move meta tag structure from prototype project
+	☐ Add "lang"
+Template:
+	☐ Lightbox gallery
+	☐ Lang
+	✔ Gists shortcode @done(2022-03-09 17:52)
+	☐ Adjust "import" shortcode (file with .md extension)
+	☐ Common image thumbnail for both image and gallery shortcodes
+	☐ Image - figures (as a shortcode argument)
+Bootstrap:
+	☐ Generate CSS to project /assets/ folder
+	☐ Compressed/uncompressed stylesheet as builder argument
+Builder:
+	☐ Remove "thumb" from thumbnail file name
+Project:
+	☐ Image title list
+		image-01.png: Title of an image-01.png
+		☐ append new images during build
+		☐ print missing titles
+		☐ print missing files
