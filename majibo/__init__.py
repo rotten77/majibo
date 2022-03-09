@@ -60,7 +60,8 @@ class Majibo():
 		for folder in ['img', 'assets']:
 			os.makedirs(os.path.join(self.project_dist_path, folder))
 			for file in os.listdir(os.path.join(self.project_path, folder)):
-				shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
+				if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
+					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
 		
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)

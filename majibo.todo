@@ -9,7 +9,7 @@ Template:
 	☐ Common image thumbnail for both image and gallery shortcodes
 	☐ Image - figures (as a shortcode argument)
 Bootstrap:
-	☐ Generate CSS to project /assets/ folder
+	✔ Generate CSS to project /assets/ folder @done(2022-03-09 18:50)
 	☐ Compressed/uncompressed stylesheet as builder argument
 Builder:
 	☐ Remove "thumb" from thumbnail file name
