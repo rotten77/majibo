@@ -9,10 +9,12 @@ SITE_AUTHOR = 'Jan Zatloukal'
 
 
 SITE_NAVIGATION = [
-	{'id': 'index', 'title': 'Home'},
-	{'id': 'page', 'title': 'Page'},
-	{'id': 'anchor', 'href': '#anchor', 'title': 'Anchor'},
-	{'id': 'external', 'href': 'http://www.seznam.cz/', 'title': 'Page'},
+	{'id': 'index', 'title': 'About'},
+	{'id': 'content', 'title': 'Content'},
+	{'id': 'config', 'title': 'Config'},
+	{'id': 'shortcodes', 'title': 'Shortcodes'},
+	{'id': 'publish', 'title': 'Publish'},
+	{'id': 'github', 'href': 'https://github.com/rotten77/majibo', 'title': 'Github'},
 ]
 
 PAGE_DEFAULT_IMAGE = ''
