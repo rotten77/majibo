@@ -68,7 +68,7 @@ class Shortcodes:
 
 			# include MD file
 			if shortcode['tag'] == 'include':
-				include_file = shortcode['arguments'][0] + '.md'
+				include_file = shortcode['arguments'][0].strip().replace('.md', '') + '.md'
 				include_file_path = os.path.join(self.project_content_path, 'include', include_file)
 
 				try:

@@ -132,8 +132,6 @@ class Majibo():
 			try:
 				if os.path.isfile(os.path.join(self.project_template_path, f'{page_template}.html')):
 					template_file = f'{page_template}.html'
-				else:
-					print(Fore.RED + f'template "{page_template}.html" not found' + Style.RESET_ALL)
 
 				template = templateEnv.get_template(template_file)
 				print(f'template "{template_file}"')
@@ -143,8 +141,6 @@ class Majibo():
 
 			# navigation
 			navigation = self.get_site_navigation(file)	
-
-			
 
 			# set data for template
 			data = {
