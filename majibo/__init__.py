@@ -103,23 +103,6 @@ class Majibo():
 			file_path_md = os.path.join(self.project_content_path, f'{file}.md')
 			file_path_dist = os.path.join(self.project_dist_path, f'{file}.html')
 
-			# check default template
-			template_file = 'template.html'
-			if not os.path.isfile(os.path.join(self.project_template_path, template_file)):
-				print(Fore.RED)
-				raise FileNotFoundError(f'Template file "{template_file}" not found' + Style.RESET_ALL)
-
-			# set template
-			try:
-				if os.path.isfile(os.path.join(self.project_template_path, f'{file}.html')):
-					template_file = f'{file}.html'
-
-				template = templateEnv.get_template(template_file)
-				print(f'template "{template_file}"')
-
-			except Exception as ex:
-				print(Fore.RED + f'template "{template_file}": {type(ex).__name__}' + Style.RESET_ALL)
-			
 			# load content
 			try:
 				fp = open(file_path_md, "r", encoding="utf8")
@@ -127,9 +110,36 @@ class Majibo():
 				fp.close()
 			except Exception as ex:
 				print(Fore.RED + f'read "{file}.md": {type(ex).__name__}' + Style.RESET_ALL)
-			
+
 			# shortcodes
 			markdown_text = Shortcodes(self.root_folder, self.project, self.config).convert(markdown_text)
+
+			# markdown
+			content = md.convert(markdown_text)
+
+			# check default template
+			template_file = 'template.html'
+			if not os.path.isfile(os.path.join(self.project_template_path, template_file)):
+				print(Fore.RED)
+				raise FileNotFoundError(f'Template file "{template_file}" not found' + Style.RESET_ALL)
+
+			# set template
+			page_template = file
+			try:
+				page_template = md.Meta['template'][0]
+			except:
+				pass
+			try:
+				if os.path.isfile(os.path.join(self.project_template_path, f'{page_template}.html')):
+					template_file = f'{page_template}.html'
+				else:
+					print(Fore.RED + f'template "{page_template}.html" not found' + Style.RESET_ALL)
+
+				template = templateEnv.get_template(template_file)
+				print(f'template "{template_file}"')
+
+			except Exception as ex:
+				print(Fore.RED + f'template "{template_file}": {type(ex).__name__}' + Style.RESET_ALL)
 
 			# navigation
 			navigation = self.get_site_navigation(file)	
@@ -154,7 +164,7 @@ class Majibo():
 					'image': None,
 					'description': None,
 				},
-            	'content': md.convert(markdown_text)
+            	'content': content
         	}
 
 			 # set metadata
@@ -173,30 +183,30 @@ class Majibo():
 				data['meta']['title'] = (self.config.SITE_NAME if file == 'index' else md.Meta['title'][0] + ' &#124; ' + self.config.SITE_NAME)
 			except:
 				data['meta']['title'] = self.config.SITE_NAME
-				print('missing meta "Title" tag')
+				print('error during parsing or missing meta "Title" tag')
 
 			try:
 				data['meta']['image'] = LINK_BASE_IMG + md.Meta['image'][0]
 			except:
 				data['meta']['image'] = LINK_BASE_IMG + self.config.PAGE_DEFAULT_IMAGE
-				print('missing meta "Image" tag')
+				print('error during parsing or missing meta "Image" tag')
 
 			try:
 				data['meta']['description'] = md.Meta['description'][0]
 			except:
 				data['meta']['description'] = self.config.PAGE_DEFAULT_DESCRIPTION
-				print('missing meta "Description" tag')
+				print('error during parsing or missing meta "Description" tag')
 
 			try:
 				data['meta']['author'] = md.Meta['author'][0]
 			except:
-				print('missing meta "Author" tag')
-
+				print('error during parsing or missing meta "Author" tag')
+		
 			try:
-				data['meta']['date'] = datetime.strptime(md.Meta['date'][0], self.config.DATETIME_FORMAT)
+				data['meta']['date'] = datetime.strptime(md.Meta['date'][0], '%Y-%m-%d %H:%M:%S').strftime(self.config.DATETIME_FORMAT)
 			except:
 				data['meta']['date'] = datetime.today().strftime(self.config.DATETIME_FORMAT)
-				print('missing meta "Date" tag')
+				print('error during parsing or missing meta "Date" tag')
 
 			# render
 			html = template.render(data)
