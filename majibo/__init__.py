@@ -16,8 +16,8 @@ md = markdown.Markdown(extensions=['meta', BootstrapExtension()])
 
 class Majibo():
 
-	def __init__(self, project):
-		self.root_folder = pathlib.Path(__file__).parent.parent.absolute()
+	def __init__(self, project, DEVELOPMENT_MODE = False):
+		self.root_folder = MAJIBO_ROOT_FOLDER
 
 		project_path = os.path.join(self.root_folder, 'projects', project)
 		if os.path.exists(project_path):
@@ -26,6 +26,9 @@ class Majibo():
 			self.project_dist_path = os.path.join(self.root_folder, 'dist', project)
 			self.project_template_path = os.path.join(project_path, 'template')
 			self.project_content_path = os.path.join(project_path, 'content')
+			self.DEVELOPMENT_MODE = DEVELOPMENT_MODE
+
+			print(f'project: {Fore.YELLOW}{project}')
 		else:
 			print(Fore.RED)
 			raise NotADirectoryError(f'Project folder "{project}" not found' + Style.RESET_ALL)
@@ -74,13 +77,15 @@ class Majibo():
 	
 	def build_project(self):
 		# create dist folder
-		if os.path.exists(self.project_dist_path):
+		if os.path.exists(self.project_dist_path) and self.DEVELOPMENT_MODE == False:
 			shutil.rmtree(self.project_dist_path)
-		os.makedirs(os.path.join(self.project_dist_path))
+		if not os.path.exists(self.project_dist_path):
+			os.makedirs(os.path.join(self.project_dist_path))
 
 		# copy images and assets
 		for folder in ['img', 'assets']:
-			os.makedirs(os.path.join(self.project_dist_path, folder))
+			if not os.path.exists(os.path.join(self.project_dist_path, folder)):
+				os.makedirs(os.path.join(self.project_dist_path, folder))
 			for file in os.listdir(os.path.join(self.project_path, folder)):
 				if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
 					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
@@ -92,7 +97,8 @@ class Majibo():
 
 		# generate HTML files
 		for file in self.get_project_content():
-			print(f'== {file}.md ==========')
+			print()
+			print(f'{Fore.CYAN}== {file}.md =========={Style.RESET_ALL}')
 
 			file_path_md = os.path.join(self.project_content_path, f'{file}.md')
 			file_path_dist = os.path.join(self.project_dist_path, f'{file}.html')
@@ -128,6 +134,8 @@ class Majibo():
 			# navigation
 			navigation = self.get_site_navigation(file)	
 
+			
+
 			# set data for template
 			data = {
 				'site_language': self.config.SITE_LANG,
@@ -138,7 +146,7 @@ class Majibo():
 				'is_index': (True if file == 'index' else False),
 				'page_type': 'website',
 				'link_base': LINK_BASE,
-				'stylesheet': LINK_BASE_ASSETS + ('style.min.css' if self.config.USE_COMPRESSED_CSS else 'style.css'),
+				'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
 				'title': None,
 				'navigation': navigation,
 				'meta': {
@@ -165,30 +173,30 @@ class Majibo():
 				data['meta']['title'] = (self.config.SITE_NAME if file == 'index' else md.Meta['title'][0] + ' &#124; ' + self.config.SITE_NAME)
 			except:
 				data['meta']['title'] = self.config.SITE_NAME
-				print('Missing meta "Title" tag')
+				print('missing meta "Title" tag')
 
 			try:
 				data['meta']['image'] = LINK_BASE_IMG + md.Meta['image'][0]
 			except:
 				data['meta']['image'] = LINK_BASE_IMG + self.config.PAGE_DEFAULT_IMAGE
-				print('Missing meta "Image" tag')
+				print('missing meta "Image" tag')
 
 			try:
 				data['meta']['description'] = md.Meta['description'][0]
 			except:
 				data['meta']['description'] = self.config.PAGE_DEFAULT_DESCRIPTION
-				print('Missing meta "Description" tag')
+				print('missing meta "Description" tag')
 
 			try:
 				data['meta']['author'] = md.Meta['author'][0]
 			except:
-				print('Missing meta "Author" tag')
+				print('missing meta "Author" tag')
 
 			try:
 				data['meta']['date'] = datetime.strptime(md.Meta['date'][0], self.config.DATETIME_FORMAT)
 			except:
 				data['meta']['date'] = datetime.today().strftime(self.config.DATETIME_FORMAT)
-				print('Missing meta "Date" tag')
+				print('missing meta "Date" tag')
 
 			# render
 			html = template.render(data)

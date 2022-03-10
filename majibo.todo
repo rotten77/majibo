@@ -1,10 +1,10 @@
 Majibo:
 	☐ Create example site
-	☐ Publish example site
 	☐ Create documentation (README.md) 
 Meta:
 	✔ Move meta tag structure from prototype project @done(2022-03-09 19:14)
 	✔ Add "lang" @done(2022-03-09 19:14)
+	☐ Template
 Template:
 	☐ Lightbox gallery
 	✔ Lang @done(2022-03-09 19:14)
@@ -17,10 +17,16 @@ Bootstrap:
 	✘ Compressed/uncompressed stylesheet as builder argument @cancelled(2022-03-09 19:16)
 Builder:
 	✔ Remove "thumb" from thumbnail file name @done(2022-03-09 18:52)
-	☐ Add arguments for project (py build.py --project=example)
+	✔ Add arguments for project (py build.py --project=example) @done(2022-03-10 18:23)
+	✔ Add project name to output @done(2022-03-10 18:37)
+	✔ Add colors to output @done(2022-03-10 18:23)
+	✔ Add dev mode (py build.py --project=example --dev) @done(2022-03-10 18:23)
+		do not remove dist folder
+		Sass stylesheet
 Project:
 	☐ Image title list
 		image-01.png: Title of an image-01.png
 		☐ append new images during build
 		☐ print missing titles
 		☐ print missing files
+	☐ Check 404
