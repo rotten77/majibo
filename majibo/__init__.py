@@ -90,6 +90,7 @@ class Majibo():
 				if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
 					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js'))
+		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js.map'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js.map'))
 		
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)
@@ -157,6 +158,10 @@ class Majibo():
 				'link_base': LINK_BASE,
 				'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
 				'navigation': navigation,
+				'lightbox_css': '<link rel="stylesheet" href="/ekko-lightbox/ekko-lightbox.css">',
+				'lightbox_js': '<script src="/ekko-lightbox/ekko-lightbox.min.js"></script>\n<script src="/ekko-lightbox/majibo-lightbox.js"></script>',
+				'bootstrap_js': f'<script src="{LINK_BASE_ASSETS}bootstrap.min.js"></script>',
+				'jquery_js': '<script src="/ekko-lightbox/jquery-3.6.0.min.js"></script>',
 				'meta': {
 					'title': None,
 					'image': None,
