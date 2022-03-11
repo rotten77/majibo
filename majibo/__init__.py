@@ -149,11 +149,12 @@ class Majibo():
 				'site_url': self.config.SITE_URL,
 				'site_author': self.config.SITE_AUTHOR,
 				'page_url': self.config.SITE_URL + (f'{file}.html' if file !='index' else ''),
-				'is_index': (True if file == 'index' else False),
+				'page_id': file,
+				'page_is_index': (True if file == 'index' else False),
 				'page_type': 'website',
+				'page_title': None,
 				'link_base': LINK_BASE,
 				'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
-				'title': None,
 				'navigation': navigation,
 				'meta': {
 					'title': None,
@@ -175,11 +176,17 @@ class Majibo():
 				pass
 
 			try:
-				data['title'] = (self.config.SITE_NAME if file == 'index' else md.Meta['title'][0])
-				data['meta']['title'] = (self.config.SITE_NAME if file == 'index' else md.Meta['title'][0] + ' &#124; ' + self.config.SITE_NAME)
+				data['page_title'] = md.Meta['title'][0]
 			except:
-				data['meta']['title'] = self.config.SITE_NAME
-				print('error during parsing or missing meta "Title" tag')
+				print('error during parsing or missing meta "Title" tag (as page_title)')
+			
+			try:
+				if file == 'index':
+					data['meta']['title'] = md.Meta['title'][0]
+				else:
+					data['meta']['title'] = md.Meta['title'][0] + ' &#124; ' + self.config.SITE_NAME
+			except:
+				print('error during parsing or missing meta "Title" tag (as meta.title)')
 
 			try:
 				data['meta']['image'] = LINK_BASE_IMG + md.Meta['image'][0]

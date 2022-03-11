@@ -12,6 +12,7 @@ Template:
 	✔ Adjust "import" shortcode (file with .md extension) @done(2022-03-10 19:02)
 	✘ Common image thumbnail for both image and gallery shortcodes @cancelled(2022-03-09 19:15)
 	✔ Image - figures (as a shortcode argument) @done(2022-03-10 19:01)
+	☐ Add image resize filter (https://ttl255.com/jinja2-tutorial-part-4-template-filters/)
 Bootstrap:
 	✔ Generate CSS to project /assets/ folder @done(2022-03-09 18:50)
 	✘ Compressed/uncompressed stylesheet as builder argument @cancelled(2022-03-09 19:16)
@@ -24,6 +25,8 @@ Builder:
 		do not remove dist folder
 		Sass stylesheet
 	✔ Projects list @done(2022-03-10 19:18)
+	☐ Info about missing files (404.md, favicon, stylesheet, ...)
+	☐ Skeleton project (build.py -init project_name)
 Project:
 	☐ Image title list
 		image-01.png: Title of an image-01.png
