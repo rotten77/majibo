@@ -1,6 +1,6 @@
 Majibo:
-	☐ Create example site
-	☐ Create documentation (README.md) 
+	✔ Create example site @done(2022-03-11 18:12)
+	✘ Create documentation (README.md) @cancelled(2022-03-11 18:12)
 Meta:
 	✔ Move meta tag structure from prototype project @done(2022-03-09 19:14)
 	✔ Add "lang" @done(2022-03-09 19:14)

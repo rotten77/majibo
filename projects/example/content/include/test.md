@@ -1,5 +1,1 @@
-----
-
-This is a content of `include/test.md` file
-
-----
+**This is a content of an included file `test.md`**

@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="{{site_language}}">
+<html lang="{{page_language}}">
 <head>
 {% block head %}
 	<meta charset="utf-8">
@@ -10,7 +10,7 @@
 	<meta name="description" content="{{meta.description}}">
 	<meta name="author" content="{{meta.author}}">
 
-	<meta property="og:title" content="{{title}}">
+	<meta property="og:title" content="{{page_title}}">
 	<meta property="og:type" content="{{page_type}}">
 	<meta property="og:url" content="{{page_url}}">
 	<meta property="og:description" content="{{meta.description}}">
@@ -21,6 +21,7 @@
 	<link rel="apple-touch-icon" href="{{link_base}}asssets/apple-touch-icon.png">
 
 	<link rel="stylesheet" href="{{stylesheet}}">
+	{{lightbox_css}}
 {% endblock %}
 </head>
 
@@ -30,14 +31,14 @@
 <div class="container my-5">
 	<div class="row">
 		<div class="col">
-			<p class="h1">{{site_name}}</p>
-			<hr />
 			{% block content %}{% endblock %}
 		</div>
 	</div>
 </div>
 	
 {% include 'include/footer.html' %}
-<script src="{{link_base}}assets/bootstrap.min.js"></script>
+{{bootstrap_js}}
+{{jquery_js}}
+{{lightbox_js}}
 </body>
 </html>

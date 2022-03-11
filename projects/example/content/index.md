@@ -1,32 +1,42 @@
-# h1 Heading
+Title: Majibo - Static site generator written in Python
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+# Majibo
 
+----
 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+* Static site generator written in Python
+* Designed for my personal purposes
+* No database, content is based on markdown files
+* Powerful shortcodes for images, YouTube videos and other stuff
+* Fast and secure! Of course, because it produces only static HTML sites :-)
 
-## Shortcodes
+Majibo is a japan world for... just kidding. The name is just an acronym from used libraries/modules that I used:
 
-### Include
+* **ma** [markdown](./content.html)
+* **ji** [jinja templates](./templates.html)
+* **bo** [bootstrap](./templates.html)
 
-{{include test}}
+## How to use
 
-### Image
+**[Download or clone](https://github.com/rotten77/majibo)** Majibo repository and explore the `example` project!
 
-{{image image-01.jpg "Title of an image"}}
+You can find various files and folders so maybe some basic description is needed:
 
-### Gallery
+* `/assets/` - folder for your stylesheet, javascripts, etc.
+	* `style.scss` - Sass stylesheet file, it includes Bootstrap, you can define colors and other stuff (see [Templates](./templates.html))
+* `/content/` - content of your website, one Markdown file = one HTML file, you can find more details on [Content](./content.html))
+* `/img/` - place your images here
+* `/template/` - folder with Jinja templates (see [Templates](./templates.html))
+* `config.py` - project configuration file (see [Configuration](./configuration.html))
 
-{{gallery image-01.jpg image-02.jpg image-03.jpg}}
+## Build and publish
 
-### YouTube video
+In Majibo's root folder you can find building script `build.py`. Run it from command line and then you can find your website in the `/dist/` folder. These arguments are available:
 
-{{youtube jJjJ0pZeR2g}}
+* `-p project_name` - build project from `project_name` folder
+* `-d` - build project in [development mode](./templates.html#development-mode)
+* `-v` - show Majibo version
 
-### Iframe
+Examples:
 
-{{iframe 21x9 https://frame.mapy.cz/s/ravemoraha}}
-
-### Gist
-
-{{gist https://gist.github.com/rotten77/57e0218b0f26ef9390a0b7f08f8480bd.js}}
+{{gist https://gist.github.com/rotten77/03bb86d0a64a7e6bdcb564be28c26002}}

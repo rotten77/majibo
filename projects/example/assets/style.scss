@@ -1,8 +1,4 @@
-// @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,900&display=swap');
-
 @import "../../../bootstrap/scss/functions";
-
-// $font-family-sans-serif:      'Roboto', sans-serif;
 
 $container-max-widths: (
   sm: 540px,
@@ -13,14 +9,10 @@ $container-max-widths: (
 );
 
 // 2. Include any default variable overrides here
-$primary: #0c0;
+$primary: #673AB7;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../../bootstrap/scss/variables";
-
-$body-bg: $gray-900;
-$body-color: $white;
-
 @import "../../../bootstrap/scss/mixins";
 
 // Layout & components
