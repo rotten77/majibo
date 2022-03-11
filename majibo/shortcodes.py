@@ -77,7 +77,7 @@ class Shortcodes:
 					text = text.replace(shortcode['shortcode'], include_file_content)
 					fp.close()
 				except Exception as ex:
-					print(Fore.RED + f'include "include/{include_file}.md": {type(ex).__name__}' + Style.RESET_ALL)
+					print(Fore.RED + f'include "include/{include_file}": {type(ex).__name__}' + Style.RESET_ALL)
 			
 			# image
 			if shortcode['tag'] == 'image':
@@ -102,7 +102,7 @@ class Shortcodes:
 				template = templateEnv.get_template('gallery.html')
 				gallery = []
 				for image_file_name in shortcode['arguments']:
-					gallery.append({'file': mimg.resize(image_file_name, self.config.IMAGE_GALLERY_MAX_WIDTH, True) })
+					gallery.append({'file': mimg.resize(image_file_name, self.config.IMAGE_GALLERY_THUMBNAIL_SIZE, True) })
 				
 				shortcode_html = template.render({
 					'gallery': gallery,
@@ -116,9 +116,13 @@ class Shortcodes:
 				shortcode_html = template.render( self.get_embed_arguments(shortcode) )
 				text = text.replace(shortcode['shortcode'], shortcode_html)
 			
+			# gist
 			if shortcode['tag'] == 'gist':
 				template = templateEnv.get_template('gist.html')
-				shortcode_html = template.render( {'src': shortcode['arguments'][0].strip()} )
+				gist_url = shortcode['arguments'][0].strip()
+				if gist_url[-3:] != '.js':
+					gist_url += '.js'
+				shortcode_html = template.render( {'src': gist_url} )
 				text = text.replace(shortcode['shortcode'], shortcode_html)
 				
 

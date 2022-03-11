@@ -111,6 +111,7 @@ class Majibo():
 			except Exception as ex:
 				print(Fore.RED + f'read "{file}.md": {type(ex).__name__}' + Style.RESET_ALL)
 
+
 			# shortcodes
 			markdown_text = Shortcodes(self.root_folder, self.project, self.config).convert(markdown_text)
 
@@ -144,7 +145,6 @@ class Majibo():
 
 			# set data for template
 			data = {
-				'site_language': self.config.SITE_LANG,
 				'site_name': self.config.SITE_NAME,
 				'site_url': self.config.SITE_URL,
 				'site_author': self.config.SITE_AUTHOR,
@@ -152,6 +152,7 @@ class Majibo():
 				'page_id': file,
 				'page_is_index': (True if file == 'index' else False),
 				'page_type': 'website',
+				'page_language': self.config.SITE_LANG,
 				'page_title': None,
 				'link_base': LINK_BASE,
 				'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
@@ -160,6 +161,7 @@ class Majibo():
 					'title': None,
 					'image': None,
 					'description': None,
+					'author': None
 				},
             	'content': content
         	}
@@ -171,7 +173,7 @@ class Majibo():
 				pass
 
 			try:
-				data['site_language'] = md.Meta['lang'][0]
+				data['page_language'] = md.Meta['lang'][0]
 			except:
 				pass
 
