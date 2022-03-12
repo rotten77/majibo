@@ -1,6 +1,9 @@
 Title: Content
+Description: Majibo static site generator content documentation.
 
 # Content
+
+----
 
 Create Markdown files in `/content/` folder, one Markdown file = one HTML file. There is no support for sub-folders, categories or tags. Majibo is just for flat-structured projects.
 

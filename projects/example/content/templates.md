@@ -1,6 +1,9 @@
 Title: Templates
+Description: Majibo static site generator template documentation.
 
 # Templates
+
+----
 
 Majibo uses Jinja as a templating engine. 
 

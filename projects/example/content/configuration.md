@@ -1,6 +1,9 @@
 Title: Configuration
+Description: Majibo static site generator configuration documentation.
 
 # Configuration
+
+----
 
 Project configuration is placed in `config.py` file:
 

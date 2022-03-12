@@ -1,7 +1,9 @@
 Title: Example page
-Description: Nunc dapibus tortor vel mi dapibus sollicitudin. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Aliquam erat volutpat. 
+Description: This is the Majibo showcase page. Look what amazing websites it should generate!
 
 # Example page
+
+----
 
 Nunc dapibus tortor vel mi dapibus sollicitudin. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Aliquam erat volutpat. 
 
