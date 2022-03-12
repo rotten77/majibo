@@ -15,8 +15,10 @@ class Shortcodes:
 		self.project_path = project_path
 		self.project_content_path = os.path.join(project_path, 'content')
 		self.config = config
+		self.shortcode_counter = 0
 
 	def get_shortcodes(self, text):
+		self.shortcode_counter += 1
 		shortcodes = []
 		for shortcode in re.findall(r'.*({{([a-z_-]+)\s+([^}]+)}}).*', text):
 			arguments = []
@@ -106,6 +108,7 @@ class Shortcodes:
 				
 				shortcode_html = template.render({
 					'gallery': gallery,
+					'gallery_id': f'gallery_{self.shortcode_counter}',
 					'config': self.config,
 					})
 				text = text.replace(shortcode['shortcode'], shortcode_html)

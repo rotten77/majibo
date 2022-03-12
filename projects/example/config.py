@@ -1,5 +1,6 @@
 SITE_LANG = 'en'
 SITE_NAME = 'Majibo'
+SITE_DESCRIPTION = 'Static site generator written in Python'
 SITE_URL = 'https://majibo.rotten77.cz/'
 SITE_AUTHOR = 'Jan Zatloukal'
 

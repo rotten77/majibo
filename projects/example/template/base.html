@@ -1,27 +1,27 @@
 <!doctype html>
 
-<html lang="{{page_language}}">
+<html lang="{{page.language}}">
 <head>
 {% block head %}
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>{% if page.is_index %}{{site.name}} - {{site.description}}{% else %}{{page.title}} &#124; {{site.name}}{% endif %}</title>
+	<meta name="description" content="{{page.description}}">
+	<meta name="author" content="{{page.author}}">
+	<meta name="generator" content="{{site.generator.name}}, {{site.generator.url}}">
 
-	<title>{{meta.title}}</title>
-	<meta name="description" content="{{meta.description}}">
-	<meta name="author" content="{{meta.author}}">
+	<meta property="og:title" content="{{page.title}}">
+	<meta property="og:type" content="{{page.type}}">
+	<meta property="og:url" content="{{page.url}}">
+	<meta property="og:description" content="{{page.description}}">
+	<meta property="og:image" content="{{page.image}}">
 
-	<meta property="og:title" content="{{page_title}}">
-	<meta property="og:type" content="{{page_type}}">
-	<meta property="og:url" content="{{page_url}}">
-	<meta property="og:description" content="{{meta.description}}">
-	<meta property="og:image" content="{{meta.image}}">
+	<link rel="icon" href="{{assets.base}}favicon.ico">
+	<link rel="icon" href="{{assets.base}}favicon.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="{{assets.base}}apple-touch-icon.png">
 
-	<link rel="icon" href="{{link_base}}asssets/favicon.ico">
-	<link rel="icon" href="{{link_base}}asssets/favicon.svg" type="image/svg+xml">
-	<link rel="apple-touch-icon" href="{{link_base}}asssets/apple-touch-icon.png">
-
-	<link rel="stylesheet" href="{{stylesheet}}">
-	{{lightbox_css}}
+	<link rel="stylesheet" href="{{assets.stylesheet}}">
 {% endblock %}
 </head>
 
@@ -37,8 +37,7 @@
 </div>
 	
 {% include 'include/footer.html' %}
-{{bootstrap_js}}
-{{jquery_js}}
-{{lightbox_js}}
+<script src="{{assets.bootstrap.js}}"></script>
+<script src="{{assets.bootstrap.lightbox.js}}"></script>
 </body>
 </html>

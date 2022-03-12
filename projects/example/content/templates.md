@@ -1,3 +1,5 @@
+Title: Templates
+
 # Templates
 
 Majibo uses Jinja as a templating engine. 
@@ -8,24 +10,30 @@ Default template is `template.html` but you can specify particular template for 
 
 ## Variables
 
-* `site_name` - site (project) name
-* `site_url` - site URL
-* `site_author` - site author
-* `page_url` - page URL
-* `page_id` - page id (`info.md` = `info`)
-* `page_is_index` - true/false if page is index.md
-* `page_type` - open graph page type
-* `page_language` - page language
-* `page_title` - page title (contains also site project name)
+* `site.name` - site (project) name
+* `site.url` - site URL
+* `site.author` - site author
+* `site.navigation` - navigation object
+* `site.description` - site description
+* `site.generator.name` - Majibo name
+* `site.generator.url` - Majibo URL
+* `site.generator.version` - Majibo version
+* `page.url` - page URL
+* `page.id` - page id (`info.md` = `info`)
+* `page.is_index` - true/false if page is index.md
+* `page.type` - open graph page type
+* `page.language` - page language
+* `page.title` - page title
+* `page.description` - page description
+* `page.image` - page image
+* `page.author` - page author
+* `page.content` - page content (HTML)
 * `link_base` - link base folder (`./`)
-* `stylesheet` - link to stylesheet
-* `navigation` - navigation object
-* `meta` - meta tags
-	* `title` - page title
-	* `image` - page image
-	* `description` - page description
-	* `author` - page author
-* `content` - page content (HTML)
+* `assets.base` - assets base folder (`./assets/`)
+* `assets.stylesheet` - site CSS file
+* `assets.jquery.js` - jQuery JS file
+* `assets.bootstrap.js` - Bootstrap JS
+* `assets.bootstrap.lightbox.js` - BS5-lightbox JS
 
 ## Bootstrap
 

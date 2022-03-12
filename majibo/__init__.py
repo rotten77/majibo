@@ -91,6 +91,7 @@ class Majibo():
 					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js.map'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js.map'))
+		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js'))
 		
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)
@@ -146,77 +147,78 @@ class Majibo():
 
 			# set data for template
 			data = {
-				'site_name': self.config.SITE_NAME,
-				'site_url': self.config.SITE_URL,
-				'site_author': self.config.SITE_AUTHOR,
-				'page_url': self.config.SITE_URL + (f'{file}.html' if file !='index' else ''),
-				'page_id': file,
-				'page_is_index': (True if file == 'index' else False),
-				'page_type': 'website',
-				'page_language': self.config.SITE_LANG,
-				'page_title': None,
-				'link_base': LINK_BASE,
-				'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
-				'navigation': navigation,
-				'lightbox_css': '<link rel="stylesheet" href="/ekko-lightbox/ekko-lightbox.css">',
-				'lightbox_js': '<script src="/ekko-lightbox/ekko-lightbox.min.js"></script>\n<script src="/ekko-lightbox/majibo-lightbox.js"></script>',
-				'bootstrap_js': f'<script src="{LINK_BASE_ASSETS}bootstrap.min.js"></script>',
-				'jquery_js': '<script src="/ekko-lightbox/jquery-3.6.0.min.js"></script>',
-				'meta': {
-					'title': None,
-					'image': None,
-					'description': None,
-					'author': None
+				'site': {
+					'name': self.config.SITE_NAME,
+					'url': self.config.SITE_URL,
+					'author': self.config.SITE_AUTHOR,
+					'navigation': navigation,
+					'description': self.config.SITE_DESCRIPTION,
+					'generator': {
+						'name': 'Majibo',
+						'url': 'https://github.com/rotten77/majibo',
+						'version': MAJIBO_VERSION,
+					}
 				},
-            	'content': content
+				'page': {
+					'url': self.config.SITE_URL + (f'{file}.html' if file !='index' else ''),
+					'id': file,
+					'is_index': (True if file == 'index' else False),
+					'type': 'website',
+					'language': self.config.SITE_LANG,
+					'title': None,
+					'description': self.config.PAGE_DEFAULT_DESCRIPTION,
+					'image': self.config.PAGE_DEFAULT_IMAGE,
+					'author': self.config.SITE_AUTHOR,
+					'content': content
+				},
+				'link_base': LINK_BASE,
+				'assets': {
+					'base': LINK_BASE_ASSETS,
+					'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
+					'jquery': {
+						'js': '/ekko-lightbox/jquery-3.6.0.min.js',
+					},
+					'bootstrap': {
+						'js': f'{LINK_BASE_ASSETS}bootstrap.min.js',
+						'lightbox': {
+							'js': f'{LINK_BASE_ASSETS}bs5-lightbox.js'
+						}
+					}
+				}
         	}
 
-			 # set metadata
+			# set metadata
 			try:
-				data['page_type'] = md.Meta['type'][0]
+				data['page']['type'] = md.Meta['type'][0]
 			except:
 				pass
 
 			try:
-				data['page_language'] = md.Meta['lang'][0]
+				data['page']['language'] = md.Meta['lang'][0]
 			except:
 				pass
 
 			try:
-				data['page_title'] = md.Meta['title'][0]
+				data['page']['title'] = md.Meta['title'][0]
 			except:
 				print('error during parsing or missing meta "Title" tag (as page_title)')
-			
-			try:
-				if file == 'index':
-					data['meta']['title'] = md.Meta['title'][0]
-				else:
-					data['meta']['title'] = md.Meta['title'][0] + ' &#124; ' + self.config.SITE_NAME
-			except:
-				print('error during parsing or missing meta "Title" tag (as meta.title)')
 
 			try:
-				data['meta']['image'] = LINK_BASE_IMG + md.Meta['image'][0]
+				data['page']['image'] = LINK_BASE_IMG + md.Meta['image'][0]
 			except:
-				data['meta']['image'] = LINK_BASE_IMG + self.config.PAGE_DEFAULT_IMAGE
+				data['page']['image'] = LINK_BASE_IMG + self.config.PAGE_DEFAULT_IMAGE
 				print('error during parsing or missing meta "Image" tag')
 
 			try:
-				data['meta']['description'] = md.Meta['description'][0]
+				data['page']['description'] = md.Meta['description'][0]
 			except:
-				data['meta']['description'] = self.config.PAGE_DEFAULT_DESCRIPTION
+				data['page']['description'] = self.config.PAGE_DEFAULT_DESCRIPTION
 				print('error during parsing or missing meta "Description" tag')
 
 			try:
-				data['meta']['author'] = md.Meta['author'][0]
+				data['page']['author'] = md.Meta['author'][0]
 			except:
-				print('error during parsing or missing meta "Author" tag')
-		
-			try:
-				data['meta']['date'] = datetime.strptime(md.Meta['date'][0], '%Y-%m-%d %H:%M:%S').strftime(self.config.DATETIME_FORMAT)
-			except:
-				data['meta']['date'] = datetime.today().strftime(self.config.DATETIME_FORMAT)
-				print('error during parsing or missing meta "Date" tag')
+				pass
 
 			# render
 			html = template.render(data)

@@ -6,11 +6,11 @@
 * Useful shortcodes for images, YouTube videos and other stuff
 * Fast and secure! Of course, because it produces only static HTML sites :-)
 
-Majibo is a japan world for... just kidding. The name is just an acronym of names of libraries and modules that I used:
+Majibo is a japan world for... just kidding. The name is just an acronym of used components:
 
-* **ma** = markdown (content, syntax)
-* **ji** = jinja (templating)
-* **bo** = bootstrap (CSS)
+* **ma** [markdown](./content.html)
+* **ji** [jinja templates](./templates.html)
+* **bo** [bootstrap](./templates.html)
 
 ----
 

@@ -3,7 +3,7 @@
 
 		{% set file = item['file'] %}
 		<div class="col-md-auto">
-			{% if file['src'] != file['thumbnail_src'] %}<a href="{{file['src']}}" data-toggle="lightbox">{% endif %}
+			{% if file['src'] != file['thumbnail_src'] %}<a href="{{file['src']}}" data-toggle="lightbox" data-gallery="{{gallery_id}}">{% endif %}
 				<img src="{{file['thumbnail_src']}}" class="img-fluid rounded" width="{{file['thumbnail_width']}}"{% if title is not none %} alt="{{title}}"{% endif %} height="{{file['thumbnail_height']}}" />
 			{% if file['src'] != file['thumbnail_src'] %}</a>{% endif %}
 		</div>

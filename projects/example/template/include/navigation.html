@@ -9,7 +9,7 @@
 		
 		<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 
-			{% for nav_item in navigation %}
+			{% for nav_item in site.navigation %}
 			<li class="nav-item">
 				<a class="nav-link{{ ' active' if nav_item['is_active'] else '' }}" aria-current="page" href="{{nav_item['href']}}">{{nav_item['title']}}</a>
 			</li>

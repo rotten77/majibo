@@ -6,7 +6,7 @@ Meta:
 	✔ Add "lang" @done(2022-03-09 19:14)
 	✔ Template @done(2022-03-10 18:54)
 Template:
-	☐ Lightbox gallery
+	✔ Lightbox gallery @done(2022-03-12 15:40)
 	✔ Lang @done(2022-03-09 19:14)
 	✔ Gists shortcode @done(2022-03-09 17:52)
 	✔ Adjust "import" shortcode (file with .md extension) @done(2022-03-10 19:02)
