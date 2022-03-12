@@ -84,13 +84,16 @@ class Shortcodes:
 			# image
 			if shortcode['tag'] == 'image':
 				template = templateEnv.get_template('image.html')
+				image_src = None
 				image_title = None
-				try:
-					image_title = shortcode['arguments'][1].strip()
-				except:
-					pass
+				for argument in shortcode['arguments']:
+					if re.match(r'.+\.[a-z]{3,4}', argument):
+						image_src = argument.strip()
+						ic(image_src)
+					else:
+						image_title = argument.strip()
 
-				resized = mimg.resize(shortcode['arguments'][0].strip(), self.config.IMAGE_MAX_WIDTH, False)
+				resized = mimg.resize(image_src, self.config.IMAGE_MAX_WIDTH, False)
 
 				shortcode_html = template.render({
 					'file': resized,
