@@ -1,7 +1,10 @@
 {% block navigation %}
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
 	<div class="container">
-		<a class="navbar-brand" href="{{link_base}}">{{site_name}}</a>
+		<a class="navbar-brand" href="{{link_base}}">
+			<img src="{{assets.base}}majibo-icon.svg" width="24" height="24" class="d-inline-block align-text-top">
+			{{site.name}}
+		</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Zobrazit navigaci">
 		<span class="navbar-toggler-icon"></span>
 		</button>

@@ -103,8 +103,14 @@ class Shortcodes:
 			if shortcode['tag'] == 'gallery':
 				template = templateEnv.get_template('gallery.html')
 				gallery = []
-				for image_file_name in shortcode['arguments']:
-					gallery.append({'file': mimg.resize(image_file_name, self.config.IMAGE_GALLERY_THUMBNAIL_SIZE, True) })
+				gallery_thumbnail_size = self.config.IMAGE_GALLERY_THUMBNAIL_SIZE
+				# check if there is
+				for argument in shortcode['arguments']:
+					if re.match(r'^[0-9]+$', argument):
+						gallery_thumbnail_size = int(argument)
+				for argument in shortcode['arguments']:
+					if not re.match(r'^[0-9]+$', argument):
+						gallery.append({'file': mimg.resize(argument, gallery_thumbnail_size, True) })
 				
 				shortcode_html = template.render({
 					'gallery': gallery,

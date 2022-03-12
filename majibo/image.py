@@ -1,7 +1,7 @@
 import os
 import re
 from icecream import ic
-from PIL import Image
+from PIL import Image, ImageOps
 from .config_global import *
 
 class MajiboImage():
@@ -34,17 +34,9 @@ class MajiboImage():
 			if image.width > max_size or crop == True:
 				
 				if crop:
-					width, height = image.size   # Get dimensions
-
-					left = (width - max_size)/2
-					top = (height - max_size)/2
-					right = (width + max_size)/2
-					bottom = (height + max_size)/2
-
-					# Crop the center of the image
-					image = image.crop((left, top, right, bottom))
-				
-				image.thumbnail((max_size, max_size))
+					image = ImageOps.fit(image, (max_size, max_size), Image.ANTIALIAS)
+				else:
+					image.thumbnail((max_size, max_size))
 
 				image_thumbnail_file_name = re.sub('(.+)(\.[a-z]{3,4})', rf'\1_{image.width}x{image.height}\2', image_file_name)
 					
