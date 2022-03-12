@@ -10,11 +10,11 @@ Title: Majibo - Static site generator written in Python
 * Powerful shortcodes for images, YouTube videos and other stuff
 * Fast and secure! Of course, because it produces only static HTML sites :-)
 
-Majibo is a japan world for... just kidding. The name is just an acronym from used libraries/modules that I used:
+Majibo is a japan world for... just kidding. The name is just an acronym from used components:
 
-* **ma** [markdown](./content.html)
-* **ji** [jinja templates](./templates.html)
-* **bo** [bootstrap](./templates.html)
+* **ma** = [markdown](./content.html)
+* **ji** = [jinja templates](./templates.html)
+* **bo** = [bootstrap](./templates.html)
 
 ## How to use
 
@@ -40,3 +40,14 @@ In Majibo's root folder you can find building script `build.py`. Run it from com
 Examples:
 
 {{gist https://gist.github.com/rotten77/03bb86d0a64a7e6bdcb564be28c26002}}
+
+## Components
+
+Majibo uses these essential components:
+
+* [Python-Markdown](https://python-markdown.github.io/)
+* [Jinja Templates](https://jinja.palletsprojects.com/en/3.0.x/)
+* [Bootstrap 5](https://getbootstrap.com/)
+* [BS5-Lightbox](https://trvswgnr.github.io/bs5-lightbox/)
+
+...and some other Python modules that you can find in [requirements.txt](https://github.com/rotten77/majibo/blob/main/requirements.txt) file.

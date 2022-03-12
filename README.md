@@ -8,9 +8,9 @@
 
 Majibo is a japan world for... just kidding. The name is just an acronym of used components:
 
-* **ma** [markdown](./content.html)
-* **ji** [jinja templates](./templates.html)
-* **bo** [bootstrap](./templates.html)
+* **ma**markdown
+* **ji**jinja templates
+* **bo**bootstrap
 
 ----
 
