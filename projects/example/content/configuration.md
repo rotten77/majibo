@@ -5,8 +5,7 @@ Title: Configuration
 Project configuration is placed in `config.py` file:
 
 * `SITE_***` - your site parameters
-* `IMAGE_MAX_WIDTH` - max width of image inserted by [image shortcode](), if image is wider than this value, image is resized and could be displayed in modal lightbox
-* `IMAGE_GALLERY_MAX_COLUMNS` - max columns (images) in one row in [gallery shortcode](./content.html#shortcodes)
+* `IMAGE_MAX_WIDTH` - max width of image inserted by [image shortcode](./content.html#shortcodes), if image is wider than this value, image is resized and could be displayed in modal lightbox
 * `IMAGE_GALLERY_THUMBNAIL_SIZE` - size of image thumbnail in [gallery](./content.html#shortcodes)
 * `SITE_NAVIGATION` - navigation that can be used in templates
 * `PAGE_DEFAULT_IMAGE` - default page image that is used if there is no image in page's [meta data](./content.html#meta-data)

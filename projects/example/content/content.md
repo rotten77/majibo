@@ -6,9 +6,9 @@ Create Markdown files in `/content/` folder, one Markdown file = one HTML file. 
 
 Place images in `/img/` folder.
 
-## Meta tags
+## Meta data
 
-Majibo supports these Markdown meta tags
+Majibo supports these Markdown meta data tags
 
 * `Title` - page title
 * `Description` - page description
