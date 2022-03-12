@@ -17,8 +17,8 @@ DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 DATE_FORMAT = '%Y-%m-%d'
 TIME_FORMAT = '%H:%M:%S'
 
-PAGE_DEFAULT_IMAGE = ''
-PAGE_DEFAULT_DESCRIPTION = ''
+PAGE_DEFAULT_IMAGE = 'majibo-forest.png'
+PAGE_DEFAULT_DESCRIPTION = 'Majibo is a static site generator written in Python and designed for my personal purposes.'
 
 IMAGE_MAX_WIDTH = 600
 IMAGE_GALLERY_MAX_COLUMNS = 3

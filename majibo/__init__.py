@@ -167,7 +167,7 @@ class Majibo():
 					'language': self.config.SITE_LANG,
 					'title': None,
 					'description': self.config.PAGE_DEFAULT_DESCRIPTION,
-					'image': self.config.PAGE_DEFAULT_IMAGE,
+					'image': self.config.SITE_URL + 'img/' + self.config.PAGE_DEFAULT_IMAGE,
 					'author': self.config.SITE_AUTHOR,
 					'content': content
 				},
@@ -204,9 +204,9 @@ class Majibo():
 				print('error during parsing or missing meta "Title" tag (as page_title)')
 
 			try:
-				data['page']['image'] = LINK_BASE_IMG + md.Meta['image'][0]
+				data['page']['image'] = self.config.SITE_URL + 'img/' + md.Meta['image'][0]
 			except:
-				data['page']['image'] = LINK_BASE_IMG + self.config.PAGE_DEFAULT_IMAGE
+				data['page']['image'] = self.config.SITE_URL + 'img/' + self.config.PAGE_DEFAULT_IMAGE
 				print('error during parsing or missing meta "Image" tag')
 
 			try:

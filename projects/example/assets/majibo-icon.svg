@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="105.83334mm"
+   height="105.83334mm"
+   viewBox="0 0 105.83334 105.83334"
+   version="1.1"
+   id="svg109"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   sodipodi:docname="majibo-icon.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview111"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.18529742"
+     inkscape:cx="-715.06662"
+     inkscape:cy="682.68625"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs106">
+    <linearGradient
+       id="_lgradient_1"
+       x1="0"
+       y1="0.5"
+       x2="1"
+       y2="0.5"
+       gradientTransform="matrix(182,0,0,182,424,190.254)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0%"
+         stop-opacity="1"
+         style="stop-color:rgb(103,58,183)"
+         id="stop14" />
+      <stop
+         offset="100%"
+         stop-opacity="1"
+         style="stop-color:rgb(255,87,34)"
+         id="stop16" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-38.577509,-82.841935)">
+    <g
+       style="isolation:isolate"
+       id="g45"
+       transform="matrix(0.58150183,0,0,0.58150183,-86.765984,346.44018)"
+       inkscape:export-filename="C:\Users\zatloukal\Desktop\majibo-icon-160.png"
+       inkscape:export-xdpi="384"
+       inkscape:export-ydpi="384">
+      <g
+         id="g23"
+         transform="translate(-208.44867,-643.55996)">
+        <linearGradient
+           id="linearGradient100"
+           x1="0"
+           y1="0.5"
+           x2="1"
+           y2="0.5"
+           gradientTransform="matrix(182,0,0,182,424,190.254)"
+           gradientUnits="userSpaceOnUse">
+          <stop
+             offset="0%"
+             stop-opacity="1"
+             style="stop-color:rgb(103,58,183)"
+             id="stop96" />
+          <stop
+             offset="100%"
+             stop-opacity="1"
+             style="stop-color:rgb(255,87,34)"
+             id="stop98" />
+        </linearGradient>
+        <path
+           d="m 424,190.254 h 182 v 182 H 424 Z"
+           fill-rule="evenodd"
+           fill="url(#_lgradient_1)"
+           id="path19"
+           style="fill:url(#_lgradient_1)" />
+        <path
+           d="m 450,268.254 h 130 v 26 H 450 Z m 52,-26 h 26 v 26 h -26 z m 0,-26 h 26 v 26 h -26 z m -26,104 h 26 v 26 h -26 z m 52,0 h 26 v 26 h -26 z m 0,-26 h 26 v 26 h -26 z m -52,0 h 26 v 26 h -26 z"
+           fill-rule="evenodd"
+           fill="#ffffff"
+           id="path21" />
+      </g>
+    </g>
+  </g>
+</svg>
