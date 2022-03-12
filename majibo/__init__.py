@@ -11,6 +11,7 @@ from .shortcodes import Shortcodes
 import importlib.util
 from .config_global import *
 from datetime import datetime
+import slug
 
 md = markdown.Markdown(extensions=['meta', BootstrapExtension()])
 
@@ -119,6 +120,10 @@ class Majibo():
 
 			# markdown
 			content = md.convert(markdown_text)
+
+			# add ID to headings
+			for heading in re.findall(r'<h([0-9])>([^<]+)', content):
+				content = content.replace(f'<h{heading[0]}>{heading[1]}</h{heading[0]}>', f'<h{heading[0]} id="{slug.slug(heading[1])}">{heading[1]}</h{heading[0]}>')
 
 			# check default template
 			template_file = 'template.html'

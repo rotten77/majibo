@@ -21,5 +21,4 @@ PAGE_DEFAULT_IMAGE = 'majibo-forest.png'
 PAGE_DEFAULT_DESCRIPTION = 'Majibo is a static site generator written in Python and designed for my personal purposes.'
 
 IMAGE_MAX_WIDTH = 600
-IMAGE_GALLERY_MAX_COLUMNS = 3
 IMAGE_GALLERY_THUMBNAIL_SIZE = 240

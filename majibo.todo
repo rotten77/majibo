@@ -27,6 +27,7 @@ Builder:
 	✔ Projects list @done(2022-03-10 19:18)
 	☐ Info about missing files (404.md, favicon, stylesheet, ...)
 	☐ Skeleton project (build.py -init project_name)
+	✔ Add ID to headings @done(2022-03-12 19:29)
 Project:
 	☐ Image title list
 		image-01.png: Title of an image-01.png

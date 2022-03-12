@@ -1,16 +1,10 @@
-<div class="row justify-content-center mb-4">
+<div class="row justify-content-center">
 	{%  for item in gallery %}
-
 		{% set file = item['file'] %}
-		<div class="col-auto">
+		<div class="col-auto mb-4">
 			{% if file['src'] != file['thumbnail_src'] %}<a href="{{file['src']}}" data-toggle="lightbox" data-gallery="{{gallery_id}}">{% endif %}
 				<img src="{{file['thumbnail_src']}}" class="img-fluid rounded" width="{{file['thumbnail_width']}}"{% if title is not none %} alt="{{title}}"{% endif %} height="{{file['thumbnail_height']}}" />
 			{% if file['src'] != file['thumbnail_src'] %}</a>{% endif %}
 		</div>
-
-		{% if loop.index is divisibleby(config.IMAGE_GALLERY_MAX_COLUMNS) %}
-			{% set i = 0 %}
-			</div><div class="row justify-content-center mb-4">
-		{% endif %}
 	{% endfor %}
 </div>
