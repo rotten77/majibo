@@ -6,6 +6,7 @@ import re
 from icecream import ic
 
 MAJIBO_VERSION = '0.1.1'
+MAJIBO_URL = 'https://majibo.rotten77.cz/'
 LINK_BASE = './'
 LINK_BASE_IMG = f'{LINK_BASE}img/'
 LINK_BASE_ASSETS = f'{LINK_BASE}assets/'
@@ -27,6 +28,6 @@ def about():
 	print(f'{Style.RESET_ALL}bootstrap version: {Fore.MAGENTA}{BOOTSTRAP_VERSION}')
 	print()
 	print(f'{Style.RESET_ALL}author: {Fore.MAGENTA}Jan zatloukal')
-	print(f'{Fore.CYAN}https://github.com/rotten77/majibo')
+	print(f'{Fore.CYAN}{MAJIBO_URL}')
 	print(Fore.LIGHTBLACK_EX + "* * * * * * * * * * * * * * * * * *")
 	print(Style.RESET_ALL)

@@ -89,7 +89,6 @@ class Shortcodes:
 				for argument in shortcode['arguments']:
 					if re.match(r'.+\.[a-z]{3,4}', argument):
 						image_src = argument.strip()
-						ic(image_src)
 					else:
 						image_title = argument.strip()
 
@@ -136,7 +135,21 @@ class Shortcodes:
 					gist_url += '.js'
 				shortcode_html = template.render( {'src': gist_url} )
 				text = text.replace(shortcode['shortcode'], shortcode_html)
-				
-
+			
+			# div
+			if shortcode['tag'] == 'div':
+				div_id = None
+				div_class = []
+				for argument in shortcode['arguments']:
+					if re.match(r'^\.[a-zA-Z0-9_-]+$', argument):
+						div_class.append(argument.replace('.', ''))
+					if re.match(r'^\#[a-zA-Z0-9_-]+$', argument):
+						div_id = argument.replace('#', '')
+				shortcode_html_id = f' id="{div_id}"' if div_id is not None else ''
+				shortcode_html_class = f' class="{" ".join(div_class)}"' if len(div_class)>0 else ''
+				shortcode_html = f'<div{shortcode_html_id}{shortcode_html_class}>'
+								
+				text = text.replace(shortcode['shortcode'], shortcode_html)
+				text = text.replace('{{enddiv}}', '</div>')
 				
 		return text

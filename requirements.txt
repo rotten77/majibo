@@ -3,3 +3,4 @@ icecream==2.1.1
 Jinja2==3.0.3
 Markdown==3.3.6
 Pillow==9.0.1
+slug==2.0

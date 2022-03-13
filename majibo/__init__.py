@@ -160,7 +160,7 @@ class Majibo():
 					'description': self.config.SITE_DESCRIPTION,
 					'generator': {
 						'name': 'Majibo',
-						'url': 'https://github.com/rotten77/majibo',
+						'url': MAJIBO_URL,
 						'version': MAJIBO_VERSION,
 					}
 				},
