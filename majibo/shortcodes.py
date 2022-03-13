@@ -147,7 +147,7 @@ class Shortcodes:
 						div_id = argument.replace('#', '')
 				shortcode_html_id = f' id="{div_id}"' if div_id is not None else ''
 				shortcode_html_class = f' class="{" ".join(div_class)}"' if len(div_class)>0 else ''
-				shortcode_html = f'<div{shortcode_html_id}{shortcode_html_class}>'
+				shortcode_html = f'<div{shortcode_html_id}{shortcode_html_class} markdown="block">'
 								
 				text = text.replace(shortcode['shortcode'], shortcode_html)
 				text = text.replace('{{enddiv}}', '</div>')

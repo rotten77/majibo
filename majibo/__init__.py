@@ -13,7 +13,7 @@ from .config_global import *
 from datetime import datetime
 import slug
 
-md = markdown.Markdown(extensions=['meta', BootstrapExtension()])
+md = markdown.Markdown(extensions=['meta', 'md_in_html', BootstrapExtension()])
 
 class Majibo():
 
