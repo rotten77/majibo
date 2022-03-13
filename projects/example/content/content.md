@@ -61,3 +61,9 @@ Shows external (embed) content, you can specify ratio (see Bootstrap documentati
 {{gist https://gist.github.com/rotten77/a467387ef368e0414e879eb16531f8db}}
 
 Shows GitHub's gist.
+
+### Div
+
+{{gist https://gist.github.com/rotten77/5905f25915622815e9cc399f923c74cb}}
+
+Add div `<div>` to your page.

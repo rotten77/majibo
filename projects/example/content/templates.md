@@ -40,7 +40,7 @@ Default template is `template.html` but you can specify particular template for 
 
 ## Bootstrap
 
-Majibo uses [Bootstrap](https://getbootstrap.com/) CSS framework. Main Sass file is placed in `/assets/style.scss` file. This files includes Bootstrap file. You have to use Sass compiler to compile it to CSS file.
+Majibo uses [Bootstrap](https://getbootstrap.com/) CSS framework. Main Sass file is `/assets/style.scss`. This file includes Bootstrap files. You have to use Sass compiler to compile it to CSS file.
 
 I am using [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) extension for VS Code.
 

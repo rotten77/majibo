@@ -19,6 +19,24 @@ Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac tu
 
 > Curabitur bibendum justo non orci. Vivamus luctus egestas leo. Duis condimentum augue id magna semper rutrum. 
 
+----
+
+## Sed ut perspiciatis
+
+{{div .row}}
+
+{{div .col-md-6}}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+{{enddiv}}
+
+{{div .col-md-6}}
+Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
+{{enddiv}}
+
+{{enddiv}}
+
+----
+
 Sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 {{gallery image-01.jpg image-02.jpg image-03.jpg image-04.jpg image-05.jpg image-06.jpg}}

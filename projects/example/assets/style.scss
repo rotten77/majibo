@@ -2,11 +2,11 @@
 @import "../../../bootstrap/scss/functions";
 
 $container-max-widths: (
-  sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 960px,
-  xxl: 960px
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 960px,
+	xxl: 960px
 );
 
 // 2. Include any default variable overrides here
@@ -56,3 +56,15 @@ $primary: #673AB7;
 // Utilities
 @import "../../../bootstrap/scss/utilities/api";
 // scss-docs-end import-stack
+@include media-breakpoint-down(md) {
+	[data-toggle="lightbox"] .img-fluid {
+		max-width: 140px;
+		max-height: 140px;
+	}
+}
+@include media-breakpoint-down(sm) {
+	[data-toggle="lightbox"] .img-fluid {
+		max-width: 90px;
+		max-height: 90px;
+	}
+}
