@@ -112,7 +112,9 @@ class Shortcodes:
 						gallery_thumbnail_size = int(argument)
 				for argument in shortcode['arguments']:
 					if not re.match(r'^[0-9]+$', argument):
-						gallery.append({'file': mimg.resize(argument, gallery_thumbnail_size, True) })
+						gallery_image = mimg.resize(argument, gallery_thumbnail_size, True)
+						if gallery_image is not None:
+							gallery.append({'file': gallery_image})
 				
 				shortcode_html = template.render({
 					'gallery': gallery,
