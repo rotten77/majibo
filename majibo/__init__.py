@@ -56,21 +56,29 @@ class Majibo():
 				project_content.append(file.replace('.md', ''))
 		return project_content
 	
-	def get_site_navigation(self, current_file):
+	def get_site_navigation(self, current_file, navigation_structure=None):
 		navigation = None
+		navigation_items = navigation_structure if navigation_structure is not None else self.config.SITE_NAVIGATION
 		try:
 			navigation = []
-			for item in self.config.SITE_NAVIGATION:
+			for item in navigation_items:
 				href = LINK_BASE + (f'{item["id"]}.html' if item["id"] != 'index' else '')
 				try:
 					href = item['href']
+				except:
+					pass
+
+				children = None
+				try:
+					children = self.get_site_navigation(current_file, item['children'])
 				except:
 					pass
 				navigation.append({
 					'id': item['id'],
 					'href': href,
 					'title': item['title'],
-					'is_active': True if current_file == item["id"] else False
+					'is_active': True if current_file == item["id"] else False,
+					'children': children,
 				})
 		except Exception as ex:
 			print(Fore.RED + f'navigation": {type(ex).__name__}' + Style.RESET_ALL)
@@ -148,7 +156,7 @@ class Majibo():
 				print(Fore.RED + f'template "{template_file}": {type(ex).__name__}' + Style.RESET_ALL)
 
 			# navigation
-			navigation = self.get_site_navigation(file)	
+			navigation = self.get_site_navigation(file)
 
 			# set data for template
 			data = {
