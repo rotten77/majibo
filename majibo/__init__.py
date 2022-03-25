@@ -19,6 +19,7 @@ class Majibo():
 
 	def __init__(self, project, DEVELOPMENT_MODE = False):
 		self.root_folder = MAJIBO_ROOT_FOLDER
+		self.build_timestamp = datetime.today()
 
 		project_path = os.path.join(self.root_folder, 'projects', project)
 		if os.path.exists(project_path):
@@ -163,14 +164,20 @@ class Majibo():
 				'site': {
 					'name': self.config.SITE_NAME,
 					'url': self.config.SITE_URL,
-					'author': self.config.SITE_AUTHOR,
+					'email': self.config.SITE_EMAIL,
+					'author': {
+						'name': self.config.SITE_AUTHOR,
+						'url':  self.config.SITE_AUTHOR_URL,
+						'email':  self.config.SITE_AUTHOR_EMAIL,
+					},
 					'navigation': navigation,
 					'description': self.config.SITE_DESCRIPTION,
 					'generator': {
 						'name': 'Majibo',
 						'url': MAJIBO_URL,
-						'version': MAJIBO_VERSION,
-					}
+						'version': MAJIBO_VERSION
+					},
+					'build_id': self.build_timestamp.strftime('%Y%m%d%H%M%S'),
 				},
 				'page': {
 					'url': self.config.SITE_URL + (f'{file}.html' if file !='index' else ''),

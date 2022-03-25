@@ -2,14 +2,17 @@ SITE_LANG = 'en'
 SITE_NAME = 'Majibo'
 SITE_DESCRIPTION = 'Static site generator written in Python'
 SITE_URL = 'https://majibo.rotten77.cz/'
+SITE_EMAIL = 'zatloukal.jan@gmail.com'
 SITE_AUTHOR = 'Jan Zatloukal'
+SITE_AUTHOR_URL = 'https://rotten77.cz/'
+SITE_AUTHOR_EMAIL = 'zatloukal.jan@gmail.com'
 
 SITE_NAVIGATION = [
 	{'id': 'index', 'title': 'About'},
 	{'id': 'configuration', 'title': 'Configuration'},
 	{'id': 'content', 'title': 'Content'},
 	{'id': 'templates', 'title': 'Templates'},
-	{'id': 'example', 'title': 'Example page'},
+	{'id': 'example', 'title': 'Example page', 'children': [{'id': 'child-page', 'title': 'Child'}]},
 	{'id': 'github', 'href': 'https://github.com/rotten77/majibo', 'title': 'Get Majibo'},
 ]
 

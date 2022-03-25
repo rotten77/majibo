@@ -15,12 +15,16 @@ Default template is `template.html` but you can specify particular template for 
 
 * `site.name` - site (project) name
 * `site.url` - site URL
-* `site.author` - site author
+* `site.email` - site contact e-mail
+* `site.author.name` - site author name
+* `site.author.url` - site author URL
+* `site.author.email` - site author contact e-mail
 * `site.navigation` - navigation object
 * `site.description` - site description
 * `site.generator.name` - Majibo name
 * `site.generator.url` - Majibo URL
 * `site.generator.version` - Majibo version
+* `site.build_id` - ID (timestamp) of build
 * `page.url` - page URL
 * `page.id` - page id (`info.md` = `info`)
 * `page.is_index` - true/false if page is index.md
