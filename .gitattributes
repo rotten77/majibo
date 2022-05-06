@@ -1,2 +1,3 @@
 bootstrap/** linguist-vendored=true
 projects/** linguist-documentation=true
+majibo/template/** linguist-language=html+jinja
