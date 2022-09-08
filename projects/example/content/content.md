@@ -67,3 +67,9 @@ Shows GitHub's gist.
 {{gist https://gist.github.com/rotten77/5905f25915622815e9cc399f923c74cb}}
 
 Add div `<div>` to your page.
+
+### Pagelist
+
+{{gist https://gist.github.com/rotten77/45a60e6813adf11fe9fceb8a7d97a29f}}
+
+Add a list of children pages given by site navigation and defined by the parent's ID.

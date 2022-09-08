@@ -1,0 +1,7 @@
+<ul{{ (' class="' + wrapper_class + '"') if wrapper_class else '' }}>
+{% for item in items %}
+	<li>
+		<a class="{{ 'active' if item['is_active'] else '' }}" href="{{item['href']}}">{{item['title']}}</a>
+	</li>
+{% endfor %}
+</ul>

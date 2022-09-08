@@ -4,6 +4,7 @@ import os
 from colorama import Fore, Style
 import jinja2
 from .image import MajiboImage
+from .config_global import LINK_BASE
 
 class Shortcodes:
 
@@ -55,7 +56,23 @@ class Shortcodes:
 			'ratio': ratio,
 			'url': url,
 		}
+	
+	def get_pagelist(self, navigation, navigation_id):
+		pagelist = []
+		if navigation_id == "":
+			return navigation
 
+		for item in navigation:
+			if item['id'] == navigation_id:
+				for child_item in item['children']:
+					href = LINK_BASE + (f'{child_item["id"]}.html' if child_item["id"] != 'index' else '')
+					pagelist.append({
+						'href': href,
+						'title': child_item['title'],
+					})
+				return pagelist
+
+		return self.get_children(item['children'], navigation_id)
 
 	def convert(self, text):
 
@@ -153,5 +170,29 @@ class Shortcodes:
 								
 				text = text.replace(shortcode['shortcode'], shortcode_html)
 				text = text.replace('{{enddiv}}', '</div>')
+
+			# pagelist
+			if shortcode['tag'] == 'pagelist':
+				template = templateEnv.get_template('pagelist.html')
+				items = self.config.SITE_NAVIGATION
+				wrapper_class = None
+				try:
+					navigation_id = shortcode['arguments'][0].strip()
+					items = self.get_pagelist(self.config.SITE_NAVIGATION, navigation_id)
+				except IndexError:
+					pass
+				except Exception as ex:
+					print(Fore.RED + f'navigation_id ({navigation_id}): {type(ex).__name__}' + Style.RESET_ALL)
+
+
+				try:
+					wrapper_class = shortcode['arguments'][1].strip()
+				except IndexError:
+					pass
+				except Exception as ex:
+					print(Fore.RED + f'wrapper_class ({wrapper_class}): {type(ex).__name__}' + Style.RESET_ALL)
+
+				shortcode_html = template.render( {'items': items, 'wrapper_class': wrapper_class} )
+				text = text.replace(shortcode['shortcode'], shortcode_html)
 				
 		return text

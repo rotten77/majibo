@@ -5,7 +5,7 @@ import os
 import re
 from icecream import ic
 
-MAJIBO_VERSION = '0.1.1'
+MAJIBO_VERSION = '0.1.2'
 MAJIBO_URL = 'https://majibo.rotten77.cz/'
 LINK_BASE = './'
 LINK_BASE_IMG = f'{LINK_BASE}img/'
