@@ -5,3 +5,4 @@ projects/*
 !projects/example
 *.map
 /bootstrap/scss/*.css
+venv/
