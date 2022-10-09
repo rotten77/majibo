@@ -3,6 +3,9 @@ import argparse
 import os
 import majibo.config_global as config_global
 from colorama import Fore, Style
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
+import time
 
 # get projects
 available_projects = []
@@ -24,9 +27,23 @@ if args.p:
 
 	if args.d:
 		print(f'Development mode: {Fore.GREEN}on{Style.RESET_ALL}')
-		DEVELOPMENT_MODE = True
+		Majibo(args.p, True)
+
+		class MajiboWatchdog(FileSystemEventHandler):
+			def on_modified(self, event):
+				time.sleep(1)
+				Majibo(args.p, True)
+
+		observer = Observer()
+		observer.schedule(MajiboWatchdog(), path=os.path.join(config_global.MAJIBO_ROOT_FOLDER, 'projects', args.p), recursive=True)
+		observer.start()
+		try:
+			while True:
+				time.sleep(1)
+		except KeyboardInterrupt:
+			observer.stop()
+			observer.join()
+
 	else:
 		print(f'Development mode: {Fore.RED}off{Style.RESET_ALL}')
-		DEVELOPMENT_MODE = False
-
-	Majibo(args.p, DEVELOPMENT_MODE)
+		Majibo(args.p, False)
