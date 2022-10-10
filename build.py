@@ -32,7 +32,12 @@ if args.p:
 		class MajiboWatchdog(FileSystemEventHandler):
 			def on_modified(self, event):
 				time.sleep(1)
-				Majibo(args.p, True)
+
+				try:
+					Majibo(args.p, True)
+				except Exception as ex:
+					print(f'{Fore.RED}Exception occurred: {ex}{Style.RESET_ALL}')
+				
 
 		observer = Observer()
 		observer.schedule(MajiboWatchdog(), path=os.path.join(config_global.MAJIBO_ROOT_FOLDER, 'projects', args.p), recursive=True)
