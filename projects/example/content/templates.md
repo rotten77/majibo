@@ -35,6 +35,7 @@ Default template is `template.html` but you can specify particular template for 
 * `page.image` - page image
 * `page.author` - page author
 * `page.content` - page content (HTML)
+* `page.meta` - original markdown metadata
 * `link_base` - link base folder (`./`)
 * `assets.base` - assets base folder (`./assets/`)
 * `assets.stylesheet` - site CSS file

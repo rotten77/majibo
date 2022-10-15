@@ -21,6 +21,7 @@ Majibo supports these Markdown meta data tags
 * `Template` - [template](./templates.html) that is used for rendering
 * `Author` - page author
 * `Date` - page publication date
+* `Meta` - object containing all original meta data
 
 ## Shortcodes
 

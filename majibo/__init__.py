@@ -106,6 +106,7 @@ class Majibo():
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)
 		templateEnv = jinja2.Environment(loader=templateLoader)
+		templateEnv.add_extension('jinja2.ext.do')
 
 		# generate HTML files
 		for file in self.get_project_content():
@@ -204,7 +205,8 @@ class Majibo():
 							'js': f'{LINK_BASE_ASSETS}bs5-lightbox.js'
 						}
 					}
-				}
+				},
+				'meta': None
         	}
 
 			# set metadata
@@ -237,6 +239,12 @@ class Majibo():
 
 			try:
 				data['page']['author'] = md.Meta['author'][0]
+			except:
+				pass
+
+			# original meta
+			try:
+				data['page']['meta'] = md.Meta
 			except:
 				pass
 
