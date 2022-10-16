@@ -21,7 +21,7 @@
 	<link rel="icon" href="{{assets.base}}majibo-icon.svg" type="image/svg+xml">
 	<link rel="apple-touch-icon" href="{{assets.base}}majibo-icon-160x160.png">
 
-	<link rel="stylesheet" href="{{assets.stylesheet}}">
+	<link rel="stylesheet" href="{{assets.stylesheet}}?v={{site.build_id}}">
 {% endblock %}
 </head>
 
@@ -37,7 +37,7 @@
 </div>
 	
 {% include 'include/footer.html' %}
-<script src="{{assets.bootstrap.js}}"></script>
-<script src="{{assets.bootstrap.lightbox.js}}"></script>
+<script src="{{assets.bootstrap.js}}?v={{site.build_id}}"></script>
+<script src="{{assets.bootstrap.lightbox.js}}?v={{site.build_id}}"></script>
 </body>
 </html>

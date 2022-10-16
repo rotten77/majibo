@@ -1,4 +1,6 @@
-// @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
+@import "../../../bootstrap/scss/mixins/banner";
+@include bsBanner("");
+// @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 @import "../../../bootstrap/scss/functions";
 
 $container-max-widths: (
@@ -14,6 +16,7 @@ $primary: #673AB7;
 
 // 3. Include remainder of required Bootstrap stylesheets
 @import "../../../bootstrap/scss/variables";
+@import "../../../bootstrap/scss/maps";
 @import "../../../bootstrap/scss/mixins";
 
 // Layout & components
