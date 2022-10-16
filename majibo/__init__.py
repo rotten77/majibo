@@ -188,6 +188,7 @@ class Majibo():
 				'page': {
 					'url': self.config.SITE_URL + (f'{file}.html' if file !='index' else ''),
 					'id': file,
+					'template': template_file[:-5],
 					'is_index': (True if file == 'index' else False),
 					'type': 'website',
 					'language': self.config.SITE_LANG,
