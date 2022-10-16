@@ -12,6 +12,7 @@ import importlib.util
 from .config_global import *
 from datetime import datetime
 import slug
+import urllib.parse
 
 md = markdown.Markdown(extensions=['meta', 'md_in_html', BootstrapExtension()])
 
@@ -103,9 +104,13 @@ class Majibo():
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js.map'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js.map'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js'))
 		
+		def urlencode(input):
+			return urllib.parse.quote_plus(input)
+
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)
 		templateEnv = jinja2.Environment(loader=templateLoader)
+		templateEnv.filters['urlencode'] = urlencode
 		templateEnv.add_extension('jinja2.ext.do')
 
 		# generate HTML files

@@ -5,6 +5,10 @@ Description: This is the Majibo showcase page. Look what amazing websites it sho
 
 ----
 
+<div class="alert alert-info">
+This example page shows Majibo's capabilities. You can explore <a href="https://raw.githubusercontent.com/rotten77/majibo/main/projects/example/content/example.md">source markdown file</a>.
+</div>
+
 Nunc dapibus tortor vel mi dapibus sollicitudin. In sem justo, commodo ut, suscipit at, pharetra vitae, orci. Aliquam erat volutpat. 
 
 ## Lorem ipsum
