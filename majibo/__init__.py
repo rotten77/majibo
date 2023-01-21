@@ -14,7 +14,7 @@ from datetime import datetime
 import slug
 import urllib.parse
 
-md = markdown.Markdown(extensions=['meta', 'md_in_html', BootstrapExtension()])
+md = markdown.Markdown(extensions=['meta', 'md_in_html', 'tables', 'toc', BootstrapExtension()])
 
 class Majibo():
 
@@ -87,6 +87,11 @@ class Majibo():
 		return navigation
 	
 	def build_project(self):
+		# settings
+		try:
+			js_bootstrap_package = ('bundle' if self.config.JS_BOOTSTRAP_BUNDLE is True else 'min')
+		except:
+			js_bootstrap_package = 'min'
 		# create dist folder
 		if os.path.exists(self.project_dist_path) and self.DEVELOPMENT_MODE == False:
 			shutil.rmtree(self.project_dist_path)
@@ -100,8 +105,8 @@ class Majibo():
 			for file in os.listdir(os.path.join(self.project_path, folder)):
 				if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
 					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
-		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js'))
-		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', 'bootstrap.min.js.map'), os.path.join(self.project_dist_path, 'assets', 'bootstrap.min.js.map'))
+		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', f'bootstrap.{js_bootstrap_package}.js'), os.path.join(self.project_dist_path, 'assets', f'bootstrap.{js_bootstrap_package}.js'))
+		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', f'bootstrap.{js_bootstrap_package}.js.map'), os.path.join(self.project_dist_path, 'assets', f'bootstrap.{js_bootstrap_package}.js.map'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js'))
 		
 		def urlencode(input):
@@ -206,7 +211,7 @@ class Majibo():
 						'js': '/ekko-lightbox/jquery-3.6.0.min.js',
 					},
 					'bootstrap': {
-						'js': f'{LINK_BASE_ASSETS}bootstrap.min.js',
+						'js': f'{LINK_BASE_ASSETS}bootstrap.{js_bootstrap_package}.js',
 						'lightbox': {
 							'js': f'{LINK_BASE_ASSETS}bs5-lightbox.js'
 						}
