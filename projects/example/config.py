@@ -25,3 +25,5 @@ PAGE_DEFAULT_DESCRIPTION = 'Majibo is a static site generator written in Python 
 
 IMAGE_MAX_WIDTH = 600
 IMAGE_GALLERY_THUMBNAIL_SIZE = 240
+
+JS_BOOTSTRAP_BUNDLE = True
