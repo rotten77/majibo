@@ -1,3 +1,4 @@
+<div class="majibo-gallery">
 <div class="row justify-content-center">
 	{%  for item in gallery %}
 		{% set file = item['file'] %}
@@ -7,4 +8,5 @@
 			{% if file['src'] != file['thumbnail_src'] %}</a>{% endif %}
 		</div>
 	{% endfor %}
+</div>
 </div>
