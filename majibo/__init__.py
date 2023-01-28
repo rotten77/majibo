@@ -207,9 +207,6 @@ class Majibo():
 				'assets': {
 					'base': LINK_BASE_ASSETS,
 					'stylesheet': ((LINK_BASE_ASSETS + 'style.min.css') if self.DEVELOPMENT_MODE == False else f'/projects/{self.project}/assets/style.min.css'),
-					'jquery': {
-						'js': '/ekko-lightbox/jquery-3.6.0.min.js',
-					},
 					'bootstrap': {
 						'js': f'{LINK_BASE_ASSETS}bootstrap.{js_bootstrap_package}.js',
 						'lightbox': {

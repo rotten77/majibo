@@ -39,7 +39,6 @@ Default template is `template.html` but you can specify particular template for 
 * `link_base` - link base folder (`./`)
 * `assets.base` - assets base folder (`./assets/`)
 * `assets.stylesheet` - site CSS file
-* `assets.jquery.js` - jQuery JS file
 * `assets.bootstrap.js` - Bootstrap JS
 * `assets.bootstrap.lightbox.js` - BS5-lightbox JS
 
