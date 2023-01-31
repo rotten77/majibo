@@ -39,5 +39,22 @@
 {% include 'include/footer.html' %}
 <script src="{{assets.bootstrap.js}}?v={{site.build_id}}"></script>
 <script src="{{assets.bootstrap.lightbox.js}}?v={{site.build_id}}"></script>
+
+<script type="text/javascript">
+	//<![CDATA[
+	var owa_baseUrl = 'https://analytics.ztlkl.cz/';
+	var owa_cmds = owa_cmds || [];
+	owa_cmds.push(['setSiteId', '475a76af66d171ba8c0a234f7e5e5d4d']);
+	owa_cmds.push(['trackPageView']);
+	owa_cmds.push(['trackClicks']);
+	
+	(function() {
+		var _owa = document.createElement('script'); _owa.type = 'text/javascript'; _owa.async = true;
+		owa_baseUrl = ('https:' == document.location.protocol ? window.owa_baseSecUrl || owa_baseUrl.replace(/http:/, 'https:') : owa_baseUrl );
+		_owa.src = owa_baseUrl + 'modules/base/dist/owa.tracker.js';
+		var _owa_s = document.getElementsByTagName('script')[0]; _owa_s.parentNode.insertBefore(_owa, _owa_s);
+	}());
+	//]]>
+</script>
 </body>
 </html>
