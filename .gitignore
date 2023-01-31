@@ -6,3 +6,4 @@ projects/*
 *.map
 /bootstrap/scss/*.css
 venv/
+.DS_Store
