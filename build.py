@@ -31,12 +31,12 @@ if args.p:
 
 		class MajiboWatchdog(FileSystemEventHandler):
 			def on_modified(self, event):
-				time.sleep(1)
-
 				try:
 					Majibo(args.p, True)
 				except Exception as ex:
 					print(f'{Fore.RED}Exception occurred: {ex}{Style.RESET_ALL}')
+				
+				time.sleep(1)
 				
 
 		observer = Observer()
