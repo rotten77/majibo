@@ -6,12 +6,14 @@ from colorama import Fore, Style
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import time
+from consolemenu import SelectionMenu
 import webbrowser
 
 # get projects
 available_projects = []
 for project_name in os.listdir(os.path.join(config_global.MAJIBO_ROOT_FOLDER, 'projects')):
 	available_projects.append(project_name)
+
 
 # arguments parses
 parser = argparse.ArgumentParser()
@@ -24,6 +26,10 @@ args = parser.parse_args()
 # build
 if args.v:
 	config_global.about()
+	exit()
+
+if not args.p:
+	args.p = available_projects[SelectionMenu.get_selection(available_projects)]
 
 if args.p:
 

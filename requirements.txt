@@ -1,7 +1,9 @@
 colorama==0.4.4
+console_menu==0.8.0
+consolemenu==1.0.1
 icecream==2.1.1
 Jinja2==3.0.3
 Markdown==3.3.6
-Pillow==9.2.0
+Pillow==9.5.0
 slug==2.0
 watchdog==2.1.9
