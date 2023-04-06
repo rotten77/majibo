@@ -18,7 +18,7 @@ md = markdown.Markdown(extensions=['meta', 'md_in_html', 'tables', 'toc', Bootst
 
 class Majibo():
 
-	def __init__(self, project, DEVELOPMENT_MODE = False):
+	def __init__(self, project, DEVELOPMENT_MODE = False, content_file=None):
 		self.root_folder = MAJIBO_ROOT_FOLDER
 		self.build_timestamp = datetime.today()
 
@@ -45,17 +45,20 @@ class Majibo():
 		except Exception as ex:
 			print(Fore.RED + f'error "{project}/config.py": {type(ex).__name__}' + Style.RESET_ALL)
 		
-		self.build_project()
+		self.build_project(content_file=content_file)
 
 
 	def get_project(self):
 		return self.project
 
-	def get_project_content(self):
+	def get_project_content(self, content_file):
 		project_content = []
-		for file in os.listdir(os.path.join(self.project_path, 'content')):
-			if re.match('.+\.md', file):
-				project_content.append(file.replace('.md', ''))
+		if content_file:
+			project_content.append(content_file.replace('\\content\\', '').replace('.md', ''))
+		else:
+			for file in os.listdir(os.path.join(self.project_path, 'content')):
+				if re.match('.+\.md', file):
+					project_content.append(file.replace('.md', ''))
 		return project_content
 	
 	def get_site_navigation(self, current_file, navigation_structure=None):
@@ -86,7 +89,7 @@ class Majibo():
 			print(Fore.RED + f'navigation": {type(ex).__name__}' + Style.RESET_ALL)
 		return navigation
 	
-	def build_project(self):
+	def build_project(self,content_file):
 		# settings
 		try:
 			js_bootstrap_package = ('bundle' if self.config.JS_BOOTSTRAP_BUNDLE is True else 'min')
@@ -108,6 +111,7 @@ class Majibo():
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', f'bootstrap.{js_bootstrap_package}.js'), os.path.join(self.project_dist_path, 'assets', f'bootstrap.{js_bootstrap_package}.js'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', f'bootstrap.{js_bootstrap_package}.js.map'), os.path.join(self.project_dist_path, 'assets', f'bootstrap.{js_bootstrap_package}.js.map'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js'))
+		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js.map'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js.map'))
 		
 		def urlencode(input):
 			return urllib.parse.quote_plus(input)
@@ -119,7 +123,7 @@ class Majibo():
 		templateEnv.add_extension('jinja2.ext.do')
 
 		# generate HTML files
-		for file in self.get_project_content():
+		for file in self.get_project_content(content_file=content_file):
 			print()
 			print(f'{Fore.CYAN}== {file}.md =========={Style.RESET_ALL}')
 
