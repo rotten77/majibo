@@ -114,7 +114,7 @@ class Majibo():
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js.map'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js.map'))
 		
 		def urlencode(input):
-			return urllib.parse.quote_plus(input)
+			return urllib.parse.quote_plus(str(input))
 
 		# setup jinja
 		templateLoader = jinja2.FileSystemLoader(searchpath=self.project_template_path)
