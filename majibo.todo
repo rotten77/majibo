@@ -1,6 +1,7 @@
 Majibo:
 	✔ Create example site @done(2022-03-11 18:12)
 	✘ Create documentation (README.md) @cancelled(2022-03-11 18:12)
+	☐ Make it as a module
 Meta:
 	✔ Move meta tag structure from prototype project @done(2022-03-09 19:14)
 	✔ Add "lang" @done(2022-03-09 19:14)
@@ -14,6 +15,10 @@ Template:
 	✔ Image - figures (as a shortcode argument) @done(2022-03-10 19:01)
 	☐ Add image resize filter (https://ttl255.com/jinja2-tutorial-part-4-template-filters/)
 	✔ Add div shortcode @done(2022-03-13 08:29)
+	☐ Convert included files
+	☐ Sass
+	☐ Video tag
+
 Bootstrap:
 	✔ Generate CSS to project /assets/ folder @done(2022-03-09 18:50)
 	✘ Compressed/uncompressed stylesheet as builder argument @cancelled(2022-03-09 19:16)

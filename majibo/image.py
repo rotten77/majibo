@@ -14,7 +14,7 @@ class MajiboImage():
 		self.project_img_path = os.path.join(project_path, 'img')
 		self.project_dist_img_path = os.path.join(self.root_folder, 'dist', project, 'img')
 
-	def resize(self, image_file_name, max_size=800, crop=False):
+	def resize(self, image_file_name, max_size=800, crop=False, max_height=0, save_to_project=False):
 		image_file_path = os.path.join(self.project_img_path,  image_file_name)
 		image_meta_data = None
 
@@ -31,16 +31,22 @@ class MajiboImage():
 				'thumbnail_height': image.height,
 			}
 
+			if max_height == 0:
+				max_height = max_size
+
 			if image.width > max_size or crop == True:
 				
 				if crop:
-					image = ImageOps.fit(image, (max_size, max_size), Image.ANTIALIAS)
+					image = ImageOps.fit(image, (max_size, max_height), Image.ANTIALIAS)
 				else:
-					image.thumbnail((max_size, max_size))
+					image.thumbnail((max_size, max_height))
 
 				image_thumbnail_file_name = re.sub('(.+)(\.[a-z]{3,4})', rf'\1_{image.width}x{image.height}\2', image_file_name)
-					
-				image.save(os.path.join(self.project_dist_img_path,  image_thumbnail_file_name))
+				
+				if save_to_project:
+					image.save(os.path.join(self.project_img_path,  image_thumbnail_file_name))
+				else:
+					image.save(os.path.join(self.project_dist_img_path,  image_thumbnail_file_name))
 
 				image_meta_data['thumbnail_src'] = LINK_BASE_IMG + image_thumbnail_file_name
 				image_meta_data['thumbnail_width'] = image.width
