@@ -101,8 +101,8 @@ class Majibo():
 		if not os.path.exists(self.project_dist_path):
 			os.makedirs(os.path.join(self.project_dist_path))
 
-		# copy images and assets
-		for folder in ['img', 'assets']:
+		# copy images, assets and files
+		for folder in ['img', 'assets', 'files']:
 			if not os.path.exists(os.path.join(self.project_dist_path, folder)):
 				os.makedirs(os.path.join(self.project_dist_path, folder))
 			for file in os.listdir(os.path.join(self.project_path, folder)):
