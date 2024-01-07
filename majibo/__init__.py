@@ -103,11 +103,12 @@ class Majibo():
 
 		# copy images, assets and files
 		for folder in ['img', 'assets', 'files']:
-			if not os.path.exists(os.path.join(self.project_dist_path, folder)):
-				os.makedirs(os.path.join(self.project_dist_path, folder))
-			for file in os.listdir(os.path.join(self.project_path, folder)):
-				if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
-					shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
+			if os.path.isdir(os.path.join(self.project_path, folder)):
+				if not os.path.exists(os.path.join(self.project_dist_path, folder)):
+					os.makedirs(os.path.join(self.project_dist_path, folder))
+				for file in os.listdir(os.path.join(self.project_path, folder)):
+					if not re.match(r'.+\.map', file) and not re.match(r'.+\.scss', file):
+						shutil.copyfile(os.path.join(self.project_path, folder, file), os.path.join(self.project_dist_path, folder, file))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', f'bootstrap.{js_bootstrap_package}.js'), os.path.join(self.project_dist_path, 'assets', f'bootstrap.{js_bootstrap_package}.js'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'js', f'bootstrap.{js_bootstrap_package}.js.map'), os.path.join(self.project_dist_path, 'assets', f'bootstrap.{js_bootstrap_package}.js.map'))
 		shutil.copyfile(os.path.join(self.root_folder, 'bootstrap', 'bs5-lightbox.js'), os.path.join(self.project_dist_path, 'assets', 'bs5-lightbox.js'))
