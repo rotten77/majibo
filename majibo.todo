@@ -16,8 +16,8 @@ Template:
 	☐ Add image resize filter (https://ttl255.com/jinja2-tutorial-part-4-template-filters/)
 	✔ Add div shortcode @done(2022-03-13 08:29)
 	☐ Convert included files
-	☐ Sass
-	☐ Video tag
+	☐ Sass compiler
+	✔ Video tag @done(24-01-07 12:51)
 
 Bootstrap:
 	✔ Generate CSS to project /assets/ folder @done(2022-03-09 18:50)

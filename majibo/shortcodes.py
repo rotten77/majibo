@@ -194,5 +194,24 @@ class Shortcodes:
 
 				shortcode_html = template.render( {'items': items, 'wrapper_class': wrapper_class} )
 				text = text.replace(shortcode['shortcode'], shortcode_html)
+			
+			# video
+			if shortcode['tag'] == 'video':
+
+				ratio = '16x9'
+				file = None
+				file_type = None
+
+				for argument in shortcode['arguments']:
+					argument = argument.strip()
+					if re.match(r'[0-9]{1,2}x[0-9]{1,2}', argument):
+						ratio = argument
+					else:
+						file = argument
+						file_type = os.path.splitext(file)[1].replace('.', '')
+
+				template = templateEnv.get_template('video.html')
+				shortcode_html = template.render( {'file': file, 'file_type': file_type, 'ratio': ratio} )
+				text = text.replace(shortcode['shortcode'], shortcode_html)
 				
 		return text
