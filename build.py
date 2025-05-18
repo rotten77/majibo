@@ -30,7 +30,6 @@ if args.v:
 
 if not args.p:
 	args.p = available_projects[SelectionMenu.get_selection(available_projects)]
-
 if args.p:
 
 	project_root = os.path.join(config_global.MAJIBO_ROOT_FOLDER, 'projects', args.p)
@@ -46,7 +45,7 @@ if args.p:
 				modified_file = event.src_path.replace(project_root, '')
 				
 				try:
-					Majibo(args.p, True, content_file=(modified_file if modified_file.startswith('\content') else None))
+					Majibo(args.p, True, content_file=(modified_file if modified_file.startswith("\\content") else None))
 				except Exception as ex:
 					print(f'{Fore.RED}Exception occurred: {ex}{Style.RESET_ALL}')
 				

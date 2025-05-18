@@ -4,6 +4,8 @@ dist/*
 projects/*
 !projects/example
 *.map
+!/bootstrap/bs5-lightbox.js.map
 /bootstrap/scss/*.css
 venv/
+.venv
 .DS_Store
